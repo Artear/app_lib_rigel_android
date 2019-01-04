@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">rigelExample</string>
+    <string name="hello">Hello this is a lib example</string>
+</resources>
