@@ -8,7 +8,6 @@ import android.support.v7.widget.PopupMenu
 import android.view.Menu
 import android.widget.ImageView
 import android.widget.LinearLayout
-import com.artear.rigel.extensions.getChildActiveFragment
 import com.artear.ui.base.ArtearActionBarProperties
 import com.artear.ui.extensions.configCoordinatorStatusBar
 import com.artear.ui.extensions.setActionBar
@@ -84,10 +83,9 @@ abstract class NavigationActivity : AppCompatActivity(), ArtearActionBarOwner,
             BottomNavigationView.OnNavigationItemReselectedListener {
                 if (!navigationHorizontalStack.empty()) {
                     val currentFragment = getFragmentByPosition(navigationHorizontalStack.peek())
-                    if (currentFragment is MainFragment) {
-                        currentFragment.goToTop()
-                        mainAppBarLayout.setExpanded(true)
-                    }
+                    currentFragment?.onReselected()
+                    //TODO
+                    //mainAppBarLayout.setExpanded(true)
                 }
             }
 
@@ -111,6 +109,7 @@ abstract class NavigationActivity : AppCompatActivity(), ArtearActionBarOwner,
         getFragmentByPosition(navigationHorizontalStack.peek())?.let {
             val artearFragment = it.childFragmentManager.fragments.last() as ActionBarFragment
             if (idFragment == artearFragment.id) {
+                //TODO
                 //mainAppBarLayout.setExpanded(true)
 
                 cleanActionBar(baseActionBar)
@@ -130,7 +129,6 @@ abstract class NavigationActivity : AppCompatActivity(), ArtearActionBarOwner,
                 actionBarProperties.actionsMenuResourceId?.let { menuResourceId ->
                     loadMenu(menuResourceId)
                 }
-
             }
         }
     }
@@ -142,20 +140,20 @@ abstract class NavigationActivity : AppCompatActivity(), ArtearActionBarOwner,
     }
 
     //TODO
-    private fun findFragment(idFragment: String): ArticleFragment? {
-        navigationHorizontalStack.forEach { horizontal ->
-            getFragmentByPosition(horizontal)?.let {
-                it.childFragmentManager.fragments.forEach { child ->
-                    if (child is ArticleFragment) {
-                        if (idFragment == child.id) {
-                            return child
-                        }
-                    }
-                }
-            }
-        }
-        return null
-    }
+//    private fun findFragment(idFragment: String): ArticleFragment? {
+//        navigationHorizontalStack.forEach { horizontal ->
+//            getFragmentByPosition(horizontal)?.let {
+//                it.childFragmentManager.fragments.forEach { child ->
+//                    if (child is ArticleFragment) {
+//                        if (idFragment == child.id) {
+//                            return child
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        return null
+//    }
 
     /**
      * When user click action image in action bar
@@ -219,9 +217,9 @@ abstract class NavigationActivity : AppCompatActivity(), ArtearActionBarOwner,
 
     }
 
-    private fun getFragmentByPosition(position: Int): Fragment? {
+    private fun getFragmentByPosition(position: Int): MainFragment? {
         val fragmentTag = String.format(FRAGMENT_TAG, position)
-        return supportFragmentManager.findFragmentByTag(fragmentTag)
+        return supportFragmentManager.findFragmentByTag(fragmentTag) as? MainFragment
     }
 
     private fun loadMenu(menuResourceId: Int) {
@@ -243,7 +241,6 @@ abstract class NavigationActivity : AppCompatActivity(), ArtearActionBarOwner,
                     // Create layout parameters for ImageView
                     layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                             LinearLayout.LayoutParams.WRAP_CONTENT).apply {
-
                         marginStart = resources.getDimensionPixelSize(R.dimen.actions_margin)
                     }
 
@@ -257,16 +254,10 @@ abstract class NavigationActivity : AppCompatActivity(), ArtearActionBarOwner,
                 i++
             }
         }
-
     }
 
-    private fun actionClicked(actionID: Int) {
-        getFragmentByPosition(navigationHorizontalStack.peek())?.let { fragment ->
-            val active = fragment.getChildActiveFragment()
-            if (active is ActionsListener) {
-                active.onActionClicked(actionID)
-            }
-        }
+    private fun actionClicked(actionId: Int) {
+        getFragmentByPosition(navigationHorizontalStack.peek())?.actionClicked(actionId)
     }
 
     private fun buttonsLayout(): LinearLayout {

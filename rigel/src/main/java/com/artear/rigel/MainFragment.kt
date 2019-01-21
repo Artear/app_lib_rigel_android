@@ -6,23 +6,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.artear.multitracker.MultiTracker
 import com.artear.rigel.extensions.getChildActiveFragment
 import com.artear.rigel.extensions.ifNull
-import com.artear.ui.base.ArtearFragment
 
 
-abstract class MainFragment : Fragment(), ArtearOnClickListener {
+class MainFragment : Fragment() {
 
-    private var fragment: ArtearFragment? = null
+    private var fragment: Fragment? = null
 
     companion object {
         private const val SECTION = "section"
         private const val CONTENT_FRAGMENT_TAG = "content_f_%s"
 
-        private const val ARTICLE_FRAGMENT = "article_f_%s_%s"
-        private const val CATEGORY_FRAGMENT = "category_f_%s_%s"
-        private const val TAG_FRAGMENT = "tag_f_%s_%s"
+
+//        private const val ARTICLE_FRAGMENT = "article_f_%s_%s"
+//        private const val CATEGORY_FRAGMENT = "category_f_%s_%s"
+//        private const val TAG_FRAGMENT = "tag_f_%s_%s"
 
         fun newInstance(navigationSection: NavigationSection) =
                 MainFragment().apply {
@@ -40,7 +39,7 @@ abstract class MainFragment : Fragment(), ArtearOnClickListener {
     }
 
     private val onBackStackListener = {
-        warn { "Flow - onBackStackListener - count = ${childFragmentManager.backStackEntryCount}" }
+//        warn { "Flow - onBackStackListener - count = ${childFragmentManager.backStackEntryCount}" }
         if (childFragmentManager.backStackEntryCount > 0) {
             val artearFragment = childFragmentManager.fragments.last() as ActionBarFragment
             artearFragment.updateActionBar()
@@ -61,16 +60,16 @@ abstract class MainFragment : Fragment(), ArtearOnClickListener {
             val tag = CONTENT_FRAGMENT_TAG + section
 
             savedInstanceState?.let {
-                fragment = childFragmentManager.findFragmentByTag(tag) as ContentFragment
+                fragment = childFragmentManager.findFragmentByTag(tag)
             }.ifNull {
                 childFragmentManager.beginTransaction().let { transaction ->
                     transaction.addToBackStack(null)
 
-                    fragment = when (section) {
-                        NavigationSection.COVER -> CoverFragment.newInstance(tag)
-                        NavigationSection.RECIPES -> RecipesFragment.newInstance(tag)
-                        NavigationSection.CUCINARE_TV -> CucinareTVFragment.newInstance(tag)
-                        NavigationSection.NEWS -> NewsFragment.newInstance(tag)
+                    fragment = when (section) {//TODO
+//                        NavigationSection.COVER -> CoverFragment.newInstance(tag)
+//                        NavigationSection.RECIPES -> RecipesFragment.newInstance(tag)
+//                        NavigationSection.CUCINARE_TV -> CucinareTVFragment.newInstance(tag)
+//                        NavigationSection.NEWS -> NewsFragment.newInstance(tag)
                         else -> null
                     }
 
@@ -103,59 +102,35 @@ abstract class MainFragment : Fragment(), ArtearOnClickListener {
 
     override fun onHiddenChanged(hidden: Boolean) {
         super.onHiddenChanged(hidden)
-        warn { "MainFragment $section - onHiddenChanged - hidden: $hidden" }
+//        warn { "MainFragment $section - onHiddenChanged - hidden: $hidden" }
         childFragmentManager.fragments.last().onHiddenChanged(hidden)
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
         childFragmentManager.removeOnBackStackChangedListener(onBackStackListener)
     }
 
-    fun goToTop() {
-        fragment?.goToUpContent()
-        val active = getChildActiveFragment()
-        when (active) {
-            is ArticleFragment -> active.goToUpContent()
-            is ContentFragment -> active.goToUpContent()
-        }
-
-    }
-
     private fun getIdFragment(fragmentId: String) =
-            String.format(fragmentId, section!!.ordinal, childFragmentManager.backStackEntryCount + 1)
+            String.format(fragmentId, section!!.position, childFragmentManager.backStackEntryCount + 1)
 
-
-    override fun onArticleClick(link: Link) {
-        val articleParameters = DeepLinkParser.parseArticle(link.internal, getString(R.string.codeBase))
-        articleParameters?.let {
-            MultiTracker.instance.send(SelectContentEvent(it.section, it.id.toString(),
-                    it.title, it.category, it.section, ARTICLE))
+    fun launchFragment(fragment: Fragment) {
+        childFragmentManager.beginTransaction().apply {
+            addToBackStack(null)
+            hide(childFragmentManager.fragments.last())
+            add(R.id.main_fragment_content, fragment)
+            commit()
         }
-        launchFragment(ArticleFragment.newInstance(getIdFragment(ARTICLE_FRAGMENT), link))
     }
 
-    override fun onCategoryClick(link: Link) {
-        launchFragment(CategoryFragment.newInstance(getIdFragment(CATEGORY_FRAGMENT), link))
+    fun onReselected() {
+        val active = getChildActiveFragment() as? ScrollableToTopContent
+        active?.goToUp()
     }
 
-    override fun onTagClick(link: Link) {
-        val tagParameters = DeepLinkParser.parseTag(link.internal, getString(R.string.codeBase))
-        tagParameters?.let {
-            MultiTracker.instance.send(SelectContentEvent(TAG, it.id.toString(), it.title,
-                    TAG, null, TAG))
-        }
-        launchFragment(TagsFragment.newInstance(getIdFragment(TAG_FRAGMENT), link))
-    }
-
-    private fun launchFragment(fragment: Fragment) {
-        childFragmentManager.beginTransaction().let { transaction ->
-            transaction.addToBackStack(null)
-            transaction.hide(childFragmentManager.fragments.last())
-            transaction.add(R.id.main_fragment_content, fragment)
-            transaction.commit()
-        }
+    fun actionClicked(actionId: Int) {
+        val active = getChildActiveFragment() as? ActionsTopMenuListener
+        active?.onActionClicked(actionId)
     }
 
 }

@@ -1,3 +1,5 @@
 package com.artear.rigel
 
-class NavigationProvider(val values: Array<out NavigationSection>, val mainMenu: Int)
+class NavigationProvider(val values: Array<out NavigationSection>, val mainMenu: Int) {
+
+}

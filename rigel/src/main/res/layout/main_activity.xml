@@ -53,11 +53,8 @@
             android:layout_height="@dimen/bottom_navigation_height"
             android:layout_alignParentBottom="true"
             android:background="?android:attr/windowBackground"
-            app:itemIconTint="@color/navigation_item_icon"
-            app:itemTextColor="@color/navigation_item_icon"
             app:labelVisibilityMode="labeled"
-            app:layout_behavior="@string/bottom_sheet_behavior"
-            app:menu="@menu/menu_bottom_navigation" />
+            app:layout_behavior="@string/bottom_sheet_behavior"/>
 
     </android.support.design.widget.CoordinatorLayout>
 

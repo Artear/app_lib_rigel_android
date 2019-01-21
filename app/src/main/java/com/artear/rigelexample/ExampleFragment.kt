@@ -7,22 +7,27 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.findNavController
-import kotlinx.android.synthetic.main.fragment_blank.*
+import com.artear.rigel.MainFragment
+import kotlinx.android.synthetic.main.example_fragment.*
 
 
 private const val ARG_COUNT = "count"
 
-/**
- * A simple [Fragment] subclass.
- * Activities that contain this fragment must implement the
- * [MainFragment.OnFragmentInteractionListener] interface
- * to handle interaction events.
- * Use the [MainFragment.newInstance] factory method to
- * create an instance of this fragment.
- *
- */
-class MainFragment : Fragment() {
+
+class ExampleFragment : Fragment() {
+
+    companion object {
+
+        @JvmStatic
+        fun newInstance(count: Int) =
+                ExampleFragment().apply {
+                    arguments = Bundle().apply {
+                        putInt(ARG_COUNT, count)
+                    }
+                }
+    }
+
+
     private var count: Int = 0
     private var listener: OnFragmentInteractionListener? = null
 
@@ -35,7 +40,7 @@ class MainFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_blank, container, false)
+        return inflater.inflate(R.layout.example_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -45,14 +50,14 @@ class MainFragment : Fragment() {
         fragmentTitle.text = title
 
         buttonAnother.setOnClickListener {
-            it.findNavController().navigate(R.id.action_blankFragment_to_blankFragment2)
+            val launcher = parentFragment as? MainFragment
+            launcher?.run { launchFragment(ExampleFragment.newInstance(0)) }
         }
 
         buttonSelf.setOnClickListener {
             val bundle = Bundle().apply {
                 putInt(ARG_COUNT, count.plus(1))
             }
-            it.findNavController().navigate(R.id.action_blankFragment_self, bundle)
         }
     }
 
@@ -89,14 +94,4 @@ class MainFragment : Fragment() {
         fun onFragmentInteraction(uri: Uri)
     }
 
-//    companion object {
-//
-//        @JvmStatic
-//        fun newInstance(count: Int) =
-//                BlankFragment().apply {
-//                    arguments = Bundle().apply {
-//                        putInt(ARG_COUNT, count)
-//                    }
-//                }
-//    }
 }
