@@ -17,13 +17,13 @@ apply plugin: 'kotlin-android-extensions'
 
 ext {
     bintrayRepo = 'Android'
-    bintrayName = 'rigel'
+    bintrayName = 'Rigel'
 
     publishedGroupId = 'com.artear.rigel'
-    libraryName = 'rigel'
+    libraryName = 'Rigel'
     artifact = 'rigel'
 
-    libraryDescription = 'rigel sample library'
+    libraryDescription = 'Rigel, one of the main stars for sky navigation. the sample library'
 
     siteUrl = 'https://github.com/Artear/app_lib_rigel_android'
     gitUrl = 'https://github.com/Artear/app_lib_rigel_android.git'
@@ -35,6 +35,11 @@ ext {
     licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
     allLicenses = ["Apache-2.0"]
 
+
+    multiTrackerVersion = "0.1.2"
+    multiTrackerProvidersVersion = "0.0.4"
+    toolsVersion = "0.0.15"
+    uiViewVersion = "0.1.7"
 }
 
 static int getVersionCode(branch) {
@@ -81,7 +86,14 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     //Support
+    implementation "com.android.support:design:$supportLibraryVersion"
     implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
+
+    //Artear
+    implementation "com.artear.multitracker:multitracker:$multiTrackerVersion"
+//    implementation "com.artear.multitracker:providers:$multiTrackerProvidersVersion"
+    implementation "com.artear.tools:tools:$toolsVersion"
+    implementation "com.artear.ui:view:$uiViewVersion"
 
 }
 

@@ -40,6 +40,7 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     //Test
+    implementation 'com.android.support:support-v4:28.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
@@ -49,4 +50,13 @@ dependencies {
 
     //Support
     implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
+
+
+    def nav_version = "1.0.0-alpha09"
+
+    implementation "android.arch.navigation:navigation-fragment-ktx:$nav_version"
+    // use -ktx for Kotlin
+    implementation "android.arch.navigation:navigation-ui-ktx:$nav_version" // use -ktx for Kotlin
+
+
 }

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.CoordinatorLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.content.MainActivity">
+
+        <FrameLayout
+            android:id="@+id/main_fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="?android:attr/actionBarSize"
+            android:layout_marginBottom="@dimen/bottom_navigation_height" />
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/mainAppBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/mainToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                android:contentInsetStart="0dp"
+                android:contentInsetLeft="0dp"
+                android:padding="0dp"
+                app:contentInsetRight="0dp"
+                app:contentInsetStart="0dp"
+                tools:ignore="UnusedAttribute">
+                <!--app:layout_scrollFlags="scroll|enterAlways|snap"-->
+
+                <com.artear.ui.views.BaseActionBarView
+                    android:id="@+id/baseActionBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:padding="0dp" />
+
+            </android.support.v7.widget.Toolbar>
+
+        </android.support.design.widget.AppBarLayout>
+
+
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/bottomNavigationView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottom_navigation_height"
+            android:layout_alignParentBottom="true"
+            android:background="?android:attr/windowBackground"
+            app:itemIconTint="@color/navigation_item_icon"
+            app:itemTextColor="@color/navigation_item_icon"
+            app:labelVisibilityMode="labeled"
+            app:layout_behavior="@string/bottom_sheet_behavior"
+            app:menu="@menu/menu_bottom_navigation" />
+
+    </android.support.design.widget.CoordinatorLayout>
+
+    <View
+        android:id="@+id/status"
+        android:layout_width="match_parent"
+        android:layout_height="22dp"
+        android:background="@color/white"
+        android:visibility="gone" />
+
+</FrameLayout>

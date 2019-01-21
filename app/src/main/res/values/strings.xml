@@ -1,4 +1,16 @@
 <resources>
     <string name="app_name">rigelExample</string>
     <string name="hello">Hello this is a lib example</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Main Navigation fragment</string>
+    <string name="hello_blank_fragment_2">Second Navigation Fragment</string>
+
+    <string name="button_to_self">To Self</string>
+    <string name="button_to_another">To Another</string>
+    <string name="new_main_fragment">New Main Fragment</string>
+    <string name="menu_first">Menu 1</string>
+    <string name="menu_second">Menu 2</string>
+    <string name="menu_third">Menu 3</string>
+    <string name="menu_fourth">Menu 4</string>
 </resources>
