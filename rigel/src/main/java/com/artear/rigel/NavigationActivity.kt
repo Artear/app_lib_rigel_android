@@ -21,7 +21,7 @@ import java.util.*
 abstract class NavigationActivity : AppCompatActivity(), ArtearActionBarOwner,
         BaseActionBarView.OnActionImageClickListener {
 
-    var menu: Menu? = null
+    private var menu: Menu? = null
 
     companion object {
         const val FRAGMENT_TAG = "fragment %s"
@@ -43,6 +43,8 @@ abstract class NavigationActivity : AppCompatActivity(), ArtearActionBarOwner,
 
         restoreNavigationHorizontalStack(savedInstanceState)
 
+        bottomNavigationView?.let { onBottomNavigationViewCreated(it) }
+
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
         if (navigationHorizontalStack.isEmpty()) {
@@ -54,6 +56,9 @@ abstract class NavigationActivity : AppCompatActivity(), ArtearActionBarOwner,
         }
 
         bottomNavigationView.setOnNavigationItemReselectedListener(mOnNavigationItemReselectedListener)
+    }
+
+    open fun onBottomNavigationViewCreated(bottomNavigationView: BottomNavigationView) {
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -99,8 +104,8 @@ abstract class NavigationActivity : AppCompatActivity(), ArtearActionBarOwner,
             }
 
     private fun updateActionBarFromFragment(fragment: Fragment) {
-        val artearFragment = fragment.childFragmentManager.fragments.last() as ActionBarFragment
-        artearFragment.updateActionBar()
+        val artearFragment = fragment.childFragmentManager.fragments.last() as? ActionBarFragment
+        artearFragment?.updateActionBar()
     }
 
     @Synchronized

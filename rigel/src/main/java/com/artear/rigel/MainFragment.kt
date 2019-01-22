@@ -12,7 +12,6 @@ import com.artear.rigel.extensions.ifNull
 
 class MainFragment : Fragment() {
 
-    private var fragment: Fragment? = null
 
     companion object {
         private const val SECTION = "section"
@@ -39,10 +38,10 @@ class MainFragment : Fragment() {
     }
 
     private val onBackStackListener = {
-//        warn { "Flow - onBackStackListener - count = ${childFragmentManager.backStackEntryCount}" }
+        //        warn { "Flow - onBackStackListener - count = ${childFragmentManager.backStackEntryCount}" }
         if (childFragmentManager.backStackEntryCount > 0) {
-            val artearFragment = childFragmentManager.fragments.last() as ActionBarFragment
-            artearFragment.updateActionBar()
+            val artearFragment = childFragmentManager.fragments.last() as? ActionBarFragment
+            artearFragment?.updateActionBar()
         }
     }
 
@@ -57,7 +56,8 @@ class MainFragment : Fragment() {
 
         section?.let {
 
-            val tag = CONTENT_FRAGMENT_TAG + section
+            val tag = String.format(CONTENT_FRAGMENT_TAG, it.toString())
+            var fragment: Fragment?
 
             savedInstanceState?.let {
                 fragment = childFragmentManager.findFragmentByTag(tag)
@@ -65,13 +65,7 @@ class MainFragment : Fragment() {
                 childFragmentManager.beginTransaction().let { transaction ->
                     transaction.addToBackStack(null)
 
-                    fragment = when (section) {//TODO
-//                        NavigationSection.COVER -> CoverFragment.newInstance(tag)
-//                        NavigationSection.RECIPES -> RecipesFragment.newInstance(tag)
-//                        NavigationSection.CUCINARE_TV -> CucinareTVFragment.newInstance(tag)
-//                        NavigationSection.NEWS -> NewsFragment.newInstance(tag)
-                        else -> null
-                    }
+                    fragment = it.fragment()
 
                     if (fragment == null) {
                         Toast.makeText(context, "Section not available", Toast.LENGTH_LONG).show()

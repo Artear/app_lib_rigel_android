@@ -15,11 +15,8 @@ open class ActionBarFragment : ArtearFragment() {
     lateinit var actionBarProperties: ArtearActionBarProperties
 
     fun updateActionBar() {
-        context?.let {
-            if (it is ArtearActionBarOwner) {
-                it.updateActionBar(actionBarProperties, id)
-            }
-        }
+        val owner = context as? ArtearActionBarOwner
+        owner?.updateActionBar(actionBarProperties, id)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

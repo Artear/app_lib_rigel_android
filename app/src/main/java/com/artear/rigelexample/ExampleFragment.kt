@@ -11,30 +11,28 @@ import com.artear.rigel.MainFragment
 import kotlinx.android.synthetic.main.example_fragment.*
 
 
-private const val ARG_COUNT = "count"
-
-
 class ExampleFragment : Fragment() {
 
     companion object {
-
-        @JvmStatic
-        fun newInstance(count: Int) =
-                ExampleFragment().apply {
-                    arguments = Bundle().apply {
-                        putInt(ARG_COUNT, count)
-                    }
-                }
+        const val ARG_COUNT = "count"
+        const val POSITION = "position"
+        const val TITLE = "title"
+        const val ENDPOINT = "endpoint"
     }
 
-
     private var count: Int = 0
+    private var position: Int = 0
+    private var title: String? = null
+    private var endpoint: String? = null
     private var listener: OnFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            count = it.getInt(ARG_COUNT)
+            count = it.getInt(ARG_COUNT, 0)
+            position = it.getInt(POSITION)
+            title = it.getString(TITLE)
+            endpoint = it.getString(ENDPOINT)
         }
     }
 
@@ -51,12 +49,15 @@ class ExampleFragment : Fragment() {
 
         buttonAnother.setOnClickListener {
             val launcher = parentFragment as? MainFragment
-            launcher?.run { launchFragment(ExampleFragment.newInstance(0)) }
+            launcher?.run { launchFragment(ExampleSection.values()[position].fragment()) }
         }
 
         buttonSelf.setOnClickListener {
-            val bundle = Bundle().apply {
-                putInt(ARG_COUNT, count.plus(1))
+            val launcher = parentFragment as? MainFragment
+            launcher?.run {
+                val fragment = ExampleSection.values()[position].fragment()
+                fragment.arguments?.putInt(ARG_COUNT, count.plus(1))
+                launchFragment(fragment)
             }
         }
     }
@@ -67,11 +68,11 @@ class ExampleFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is OnFragmentInteractionListener) {
-            listener = context
-        } else {
-            throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
-        }
+//        if (context is OnFragmentInteractionListener) {
+//            listener = context
+//        } else {
+//            throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
+//        }
     }
 
     override fun onDetach() {

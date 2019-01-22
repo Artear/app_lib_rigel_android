@@ -2,6 +2,7 @@ package com.artear.rigel
 
 import android.os.Parcel
 import android.os.Parcelable
+import android.support.v4.app.Fragment
 
 
 interface NavigationSection : Parcelable {
@@ -13,6 +14,8 @@ interface NavigationSection : Parcelable {
     val idMenu: Int
 
     val position: Int
+
+    fun fragment() : Fragment
 
     override fun describeContents(): Int
 

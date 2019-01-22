@@ -35,11 +35,6 @@ ext {
     licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
     allLicenses = ["Apache-2.0"]
 
-
-    multiTrackerVersion = "0.1.2"
-    multiTrackerProvidersVersion = "0.0.4"
-    toolsVersion = "0.0.15"
-    uiViewVersion = "0.1.7"
 }
 
 static int getVersionCode(branch) {
