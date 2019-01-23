@@ -32,6 +32,7 @@ class ExampleFragment : ActionBarFragment() {
             position = it.getInt(POSITION)
             endpoint = it.getString(ENDPOINT)
             id = it.getString(FRAGMENT_ID)!!
+            title = it.getString(ARTEAR_FRAGMENT_TITLE)
         }
     }
 
