@@ -5,9 +5,11 @@ import android.os.Parcel
 import android.os.Parcelable
 import android.support.v4.app.Fragment
 import com.artear.rigel.NavigationSection
+import com.artear.rigel.getUniqueId
 import com.artear.rigelexample.ExampleFragment.Companion.ENDPOINT
 import com.artear.rigelexample.ExampleFragment.Companion.POSITION
-import com.artear.rigelexample.ExampleFragment.Companion.TITLE
+import com.artear.ui.base.ArtearFragment.Companion.ARTEAR_FRAGMENT_TITLE
+import com.artear.ui.base.ArtearFragment.Companion.FRAGMENT_ID
 import kotlin.reflect.KClass
 import kotlin.reflect.full.createInstance
 
@@ -25,12 +27,13 @@ enum class ExampleSection(override val titleSection: String,
     override val position: Int
         get() = ordinal
 
-    override fun fragment(): Fragment {
+    override fun fragment(fragmentId: String): Fragment {
         return fragmentClass.createInstance().apply {
             arguments = Bundle().apply {
                 putInt(POSITION, this@ExampleSection.ordinal)
-                putString(TITLE, this@ExampleSection.titleSection)
                 putString(ENDPOINT, this@ExampleSection.endpoint)
+                putString(ARTEAR_FRAGMENT_TITLE, this@ExampleSection.titleSection)
+                putString(FRAGMENT_ID, getUniqueId(this@ExampleSection, fragmentId))
             }
         }
     }

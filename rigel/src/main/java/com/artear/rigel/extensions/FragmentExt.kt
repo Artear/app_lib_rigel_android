@@ -9,3 +9,7 @@ import android.support.v4.app.Fragment
 fun Fragment.getChildActiveFragment(): Fragment {
     return childFragmentManager.fragments.last()
 }
+
+fun Fragment.getIdWithChildFragmentCount(description : String): String{
+    return "${description}_${childFragmentManager.backStackEntryCount + 1}"
+}

@@ -9,6 +9,7 @@ import android.view.Menu
 import android.widget.ImageView
 import android.widget.LinearLayout
 import com.artear.ui.base.ArtearActionBarProperties
+import com.artear.ui.base.ArtearFragment
 import com.artear.ui.extensions.configCoordinatorStatusBar
 import com.artear.ui.extensions.setActionBar
 import com.artear.ui.extensions.setBarsBackground
@@ -89,7 +90,6 @@ abstract class NavigationActivity : AppCompatActivity(), ArtearActionBarOwner,
                 if (!navigationHorizontalStack.empty()) {
                     val currentFragment = getFragmentByPosition(navigationHorizontalStack.peek())
                     currentFragment?.onReselected()
-                    //TODO
                     //mainAppBarLayout.setExpanded(true)
                 }
             }
@@ -104,8 +104,8 @@ abstract class NavigationActivity : AppCompatActivity(), ArtearActionBarOwner,
             }
 
     private fun updateActionBarFromFragment(fragment: Fragment) {
-        val artearFragment = fragment.childFragmentManager.fragments.last() as? ActionBarFragment
-        artearFragment?.updateActionBar()
+        val artearFragment = fragment.childFragmentManager.fragments.last() as ActionBarFragment
+        artearFragment.updateActionBar()
     }
 
     @Synchronized
@@ -114,7 +114,6 @@ abstract class NavigationActivity : AppCompatActivity(), ArtearActionBarOwner,
         getFragmentByPosition(navigationHorizontalStack.peek())?.let {
             val artearFragment = it.childFragmentManager.fragments.last() as ActionBarFragment
             if (idFragment == artearFragment.id) {
-                //TODO
                 //mainAppBarLayout.setExpanded(true)
 
                 cleanActionBar(baseActionBar)
@@ -144,21 +143,16 @@ abstract class NavigationActivity : AppCompatActivity(), ArtearActionBarOwner,
         baseActionBar.setActionImageVisibility(false)
     }
 
-    //TODO
-//    private fun findFragment(idFragment: String): ArticleFragment? {
-//        navigationHorizontalStack.forEach { horizontal ->
-//            getFragmentByPosition(horizontal)?.let {
-//                it.childFragmentManager.fragments.forEach { child ->
-//                    if (child is ArticleFragment) {
-//                        if (idFragment == child.id) {
-//                            return child
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        return null
-//    }
+    protected fun findFragment(idFragment: String): ArtearFragment? {
+        navigationHorizontalStack.forEach { horizontal ->
+            getFragmentByPosition(horizontal)?.run {
+                return childFragmentManager.fragments.find { child ->
+                    child is ArtearFragment && idFragment == child.id
+                } as ArtearFragment
+            }
+        }
+        return null
+    }
 
     /**
      * When user click action image in action bar

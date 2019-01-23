@@ -15,7 +15,7 @@ interface NavigationSection : Parcelable {
 
     val position: Int
 
-    fun fragment() : Fragment
+    fun fragment(fragmentId: String): Fragment
 
     override fun describeContents(): Int
 

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.artear.rigel.extensions.getChildActiveFragment
+import com.artear.rigel.extensions.getIdWithChildFragmentCount
 import com.artear.rigel.extensions.ifNull
 
 
@@ -15,12 +16,7 @@ class MainFragment : Fragment() {
 
     companion object {
         private const val SECTION = "section"
-        private const val CONTENT_FRAGMENT_TAG = "content_f_%s"
-
-
-//        private const val ARTICLE_FRAGMENT = "article_f_%s_%s"
-//        private const val CATEGORY_FRAGMENT = "category_f_%s_%s"
-//        private const val TAG_FRAGMENT = "tag_f_%s_%s"
+        private const val MAIN_FRAGMENT_TAG = "main_f"
 
         fun newInstance(navigationSection: NavigationSection) =
                 MainFragment().apply {
@@ -56,16 +52,16 @@ class MainFragment : Fragment() {
 
         section?.let {
 
-            val tag = String.format(CONTENT_FRAGMENT_TAG, it.toString())
+            val tag = getIdWithChildFragmentCount(MAIN_FRAGMENT_TAG)
             var fragment: Fragment?
 
             savedInstanceState?.let {
-                fragment = childFragmentManager.findFragmentByTag(tag)
+                childFragmentManager.findFragmentByTag(tag)
             }.ifNull {
                 childFragmentManager.beginTransaction().let { transaction ->
                     transaction.addToBackStack(null)
 
-                    fragment = it.fragment()
+                    fragment = it.fragment(tag)
 
                     if (fragment == null) {
                         Toast.makeText(context, "Section not available", Toast.LENGTH_LONG).show()
@@ -76,7 +72,6 @@ class MainFragment : Fragment() {
                     transaction.commit()
                 }
             }
-
 
             childFragmentManager.addOnBackStackChangedListener(onBackStackListener)
         }
@@ -104,9 +99,6 @@ class MainFragment : Fragment() {
         super.onDestroyView()
         childFragmentManager.removeOnBackStackChangedListener(onBackStackListener)
     }
-
-    private fun getIdFragment(fragmentId: String) =
-            String.format(fragmentId, section!!.position, childFragmentManager.backStackEntryCount + 1)
 
     fun launchFragment(fragment: Fragment) {
         childFragmentManager.beginTransaction().apply {
