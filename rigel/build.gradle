@@ -23,7 +23,8 @@ ext {
     libraryName = 'Rigel'
     artifact = 'rigel'
 
-    libraryDescription = 'Rigel, one of the main stars for sky navigation. the sample library'
+    libraryDescription = 'An android library useful for common bottom navigation, making easier ' +
+            'the launch of fragments, and manipulation of back stack.'
 
     siteUrl = 'https://github.com/Artear/app_lib_rigel_android'
     gitUrl = 'https://github.com/Artear/app_lib_rigel_android.git'

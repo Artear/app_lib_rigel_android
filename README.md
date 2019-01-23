@@ -1,12 +1,32 @@
-# app_base_library_android
-app_base_library_android Lib 
+# Rigel Library
 
-Library for clone and have ready a library framework for start to work
+- An android library useful for common bottom navigation, making easier the launch of fragments, 
+ and manipulation of back stack. 
+ 
+ *Rigel is one of the main stars for sky navigation.*
+
+Download
+--------
+
+via Maven:
+```xml
+<dependency>
+  <groupId>com.artear.rigel</groupId>
+  <artifactId>rigel</artifactId>
+  <version>0.0.1</version>
+</dependency>
+```
+or Gradle:
+```groovy
+implementation 'com.artear.rigel:rigel:0.0.1'
+```
+Rigel Lib requires at minimum Java 7 or Android 4.1.
+
 
 License
 =======
 
-    Copyright 2018 Artear S.A.
+    Copyright 2019 Artear S.A.
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
