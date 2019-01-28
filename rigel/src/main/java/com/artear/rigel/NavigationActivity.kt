@@ -30,7 +30,7 @@ import com.artear.ui.extensions.setActionBar
 import com.artear.ui.extensions.setBarsBackground
 import com.artear.ui.interfaces.ArtearActionBarOwner
 import com.artear.ui.views.BaseActionBarView
-import kotlinx.android.synthetic.main.main_activity.*
+import kotlinx.android.synthetic.main.navigation_activity.*
 import java.util.*
 
 
@@ -51,9 +51,9 @@ abstract class NavigationActivity : AppCompatActivity(), ArtearActionBarOwner,
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.main_activity)
+        setContentView(R.layout.navigation_activity)
 
-        setActionBar(mainToolbar, baseActionBar, this)
+        setActionBar(mainToolbar, baseActionBarView, this)
         configCoordinatorStatusBar(root, status)
         setBarsBackground(R.color.white, mainAppBarLayout, status)
 
@@ -131,18 +131,18 @@ abstract class NavigationActivity : AppCompatActivity(), ArtearActionBarOwner,
             if (idFragment == artearFragment.id) {
                 //mainAppBarLayout.setExpanded(true)
 
-                cleanActionBar(baseActionBar)
+                cleanActionBar()
 
                 actionBarProperties.flowIconResource?.let { res ->
-                    baseActionBar.setActionImageVisibility(true)
-                    baseActionBar.setActionImage(res)
+                    baseActionBarView.setActionImageVisibility(true)
+                    baseActionBarView.setActionImage(res)
                 }
 
                 actionBarProperties.title?.let { title ->
-                    baseActionBar.setTitleContent(title)
+                    baseActionBarView.setTitleContent(title)
                 }
 
-                baseActionBar.toggleLogoTextVisibility((actionBarProperties.titleContentDrawable != null))
+                baseActionBarView.toggleLogoTextVisibility((actionBarProperties.titleContentDrawable != null))
 
                 buttonsLayout().removeAllViewsInLayout()
                 actionBarProperties.actionsMenuResourceId?.let { menuResourceId ->
@@ -152,10 +152,10 @@ abstract class NavigationActivity : AppCompatActivity(), ArtearActionBarOwner,
         }
     }
 
-    private fun cleanActionBar(baseActionBar: BaseActionBarView) {
-        baseActionBar.toggleLogoTextVisibility(false)
-        baseActionBar.setTitleContent("")
-        baseActionBar.setActionImageVisibility(false)
+    private fun cleanActionBar() {
+        baseActionBarView.toggleLogoTextVisibility(false)
+        baseActionBarView.setTitleContent("")
+        baseActionBarView.setActionImageVisibility(false)
     }
 
     protected fun findFragment(idFragment: String): ArtearFragment? {
@@ -275,7 +275,7 @@ abstract class NavigationActivity : AppCompatActivity(), ArtearActionBarOwner,
     }
 
     private fun buttonsLayout(): LinearLayout {
-        return baseActionBar.findViewById(R.id.buttonsLayout)
+        return baseActionBarView.findViewById(R.id.buttonsLayout)
     }
 
 
