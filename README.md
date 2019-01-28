@@ -20,8 +20,10 @@ or Gradle:
 ```groovy
 implementation 'com.artear.rigel:rigel:0.0.1'
 ```
-Rigel Lib requires at minimum Java 7 or Android 4.1.
+Rigel Lib requires:
 
+- Minimum Java 7 or Android 4.1.
+- Artear ui view library 0.1.7 or higher 
 
 License
 =======

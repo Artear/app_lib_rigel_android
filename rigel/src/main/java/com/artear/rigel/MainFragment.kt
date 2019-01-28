@@ -28,7 +28,6 @@ import com.artear.rigel.extensions.ifNull
 
 class MainFragment : Fragment() {
 
-
     companion object {
         private const val SECTION = "section"
         private const val MAIN_FRAGMENT_TAG = "main_f"
@@ -49,7 +48,6 @@ class MainFragment : Fragment() {
     }
 
     private val onBackStackListener = {
-        //        warn { "Flow - onBackStackListener - count = ${childFragmentManager.backStackEntryCount}" }
         if (childFragmentManager.backStackEntryCount > 0) {
             val artearFragment = childFragmentManager.fragments.last() as? ActionBarFragment
             artearFragment?.updateActionBar()
@@ -106,7 +104,6 @@ class MainFragment : Fragment() {
 
     override fun onHiddenChanged(hidden: Boolean) {
         super.onHiddenChanged(hidden)
-//        warn { "MainFragment $section - onHiddenChanged - hidden: $hidden" }
         childFragmentManager.fragments.last().onHiddenChanged(hidden)
     }
 
