@@ -16,13 +16,12 @@
 package com.artear.rigel
 
 import android.os.Bundle
-import android.support.design.widget.BottomNavigationView
-import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.PopupMenu
 import android.view.Menu
 import android.widget.ImageView
 import android.widget.LinearLayout
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.PopupMenu
+import androidx.fragment.app.Fragment
 import com.artear.ui.base.ArtearActionBarProperties
 import com.artear.ui.base.ArtearFragment
 import com.artear.ui.extensions.configCoordinatorStatusBar
@@ -30,6 +29,7 @@ import com.artear.ui.extensions.setActionBar
 import com.artear.ui.extensions.setBarsBackground
 import com.artear.ui.interfaces.ArtearActionBarOwner
 import com.artear.ui.views.BaseActionBarView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.navigation_activity.*
 import java.util.*
 

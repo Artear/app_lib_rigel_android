@@ -1,11 +1,10 @@
 package com.artear.rigelexample
 
-import android.support.design.widget.BottomNavigationView
-import android.support.v7.content.res.AppCompatResources
-import com.artear.rigel.NavigationActivity
+import androidx.appcompat.content.res.AppCompatResources
 import com.artear.rigel.NavigationProvider
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class MainActivity : NavigationActivity() {
+class MainActivity : BaseActivity() {
 
     override var navigationProvider: NavigationProvider =
             NavigationProvider(ExampleSection.values(), R.id.menu_first)

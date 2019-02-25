@@ -15,10 +15,8 @@
  */
 package com.artear.rigel
 
-import android.os.Parcel
 import android.os.Parcelable
-import android.support.v4.app.Fragment
-
+import androidx.fragment.app.Fragment
 
 interface NavigationSection : Parcelable {
 
@@ -31,8 +29,4 @@ interface NavigationSection : Parcelable {
     val position: Int
 
     fun fragment(fragmentId: String): Fragment
-
-    override fun describeContents(): Int
-
-    override fun writeToParcel(parcel: Parcel, flags: Int)
 }
