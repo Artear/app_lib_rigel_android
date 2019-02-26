@@ -16,14 +16,14 @@
 package com.artear.rigel
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.artear.rigel.extensions.getChildActiveFragment
 import com.artear.rigel.extensions.getIdWithChildFragmentCount
 import com.artear.rigel.extensions.ifNull
+import com.artear.ui.extensions.showToast
 
 
 class MainFragment : Fragment() {
@@ -77,7 +77,7 @@ class MainFragment : Fragment() {
                     fragment = it.fragment(tag)
 
                     if (fragment == null) {
-                        Toast.makeText(context, "Section not available", Toast.LENGTH_LONG).show()
+                        showToast { "Section not available" }
                         return
                     }
 

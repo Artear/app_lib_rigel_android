@@ -15,8 +15,7 @@
  */
 package com.artear.rigel.extensions
 
-import android.support.v4.app.Fragment
-
+import androidx.fragment.app.Fragment
 
 /**
  * @return The last fragment on fragments list of child fragment manager.

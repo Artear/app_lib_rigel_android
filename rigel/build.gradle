@@ -74,20 +74,18 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     //Test
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    testImplementation "junit:junit:$junitVersion"
+    androidTestImplementation "androidx.test:runner:$testRunnerVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoCoreVersion"
 
     //Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     //Support
-    implementation "com.android.support:design:$supportLibraryVersion"
-    implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
+    implementation "com.google.android.material:material:$materialVersion"
+    implementation "androidx.appcompat:appcompat:$appCompatVersion"
 
     //Artear
-    implementation "com.artear.multitracker:multitracker:$multiTrackerVersion"
-//    implementation "com.artear.multitracker:providers:$multiTrackerProvidersVersion"
     implementation "com.artear.tools:tools:$toolsVersion"
     implementation "com.artear.ui:view:$uiViewVersion"
 
