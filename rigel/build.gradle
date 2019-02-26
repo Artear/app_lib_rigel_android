@@ -86,7 +86,6 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
 
     //Artear
-    implementation "com.artear.multitracker:multitracker:$multiTrackerVersion"
     implementation "com.artear.tools:tools:$toolsVersion"
     implementation "com.artear.ui:view:$uiViewVersion"
 
