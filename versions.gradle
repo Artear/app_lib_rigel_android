@@ -46,7 +46,7 @@ buildscript {
         toolsVersion = "0.0.19"
 
         // UI View
-        uiViewVersion = "0.2.0"
+        uiViewVersion = "0.2.1"
 
     }
 }
