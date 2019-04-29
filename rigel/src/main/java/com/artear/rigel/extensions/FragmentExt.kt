@@ -24,6 +24,6 @@ fun Fragment.getChildActiveFragment(): Fragment {
     return childFragmentManager.fragments.last()
 }
 
-fun Fragment.getIdWithChildFragmentCount(description : String): String{
+fun Fragment.getIdWithChildFragmentCount(description: String): String {
     return "${description}_${childFragmentManager.backStackEntryCount + 1}"
 }
