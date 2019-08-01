@@ -22,6 +22,7 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.Fragment
+import com.artear.rigel.MainFragment.Companion.SECTION
 import com.artear.ui.base.ArtearActionBarProperties
 import com.artear.ui.base.ArtearFragment
 import com.artear.ui.extensions.configCoordinatorStatusBar
@@ -32,6 +33,8 @@ import com.artear.ui.views.BaseActionBarView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.navigation_activity.*
 import java.util.*
+import kotlin.reflect.KClass
+import kotlin.reflect.full.createInstance
 
 
 abstract class NavigationActivity : AppCompatActivity(), ArtearActionBarOwner,
@@ -75,6 +78,10 @@ abstract class NavigationActivity : AppCompatActivity(), ArtearActionBarOwner,
     }
 
     open fun onBottomNavigationViewCreated(bottomNavigationView: BottomNavigationView) {
+    }
+
+    open fun getMainFragmentClass(): KClass<out MainFragment> {
+        return MainFragment::class
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -191,7 +198,11 @@ abstract class NavigationActivity : AppCompatActivity(), ArtearActionBarOwner,
             if (fragment.isAdded) updateActionBarFromFragment(fragment)
             transaction.show(fragment)
         } else {
-            fragment = MainFragment.newInstance(navigationProvider.values[position])
+            fragment = getMainFragmentClass().createInstance().apply {
+                arguments = Bundle().apply {
+                    putParcelable(SECTION, navigationProvider.values[position])
+                }
+            }
             transaction.add(R.id.main_fragment_container, fragment,
                     String.format(FRAGMENT_TAG, position))
         }
