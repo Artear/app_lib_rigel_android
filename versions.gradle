@@ -3,11 +3,11 @@ buildscript {
     ext {
 
         // -------- Library Version ---------
-        libraryVersion = '0.0.4'
+        libraryVersion = '0.0.5'
 
 
         // ------------ Kotlin --------------
-        kotlin_version = '1.3.31'
+        kotlin_version = '1.3.41'
         kotlinVersion = kotlin_version
 
 
@@ -46,7 +46,7 @@ buildscript {
         toolsVersion = "0.0.19"
 
         // UI View
-        uiViewVersion = "0.2.1"
+        uiViewVersion = "0.2.4"
 
     }
 }

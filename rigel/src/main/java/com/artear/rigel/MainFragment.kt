@@ -26,18 +26,11 @@ import com.artear.rigel.extensions.ifNull
 import com.artear.ui.extensions.showToast
 
 
-class MainFragment : Fragment() {
+open class MainFragment : Fragment() {
 
     companion object {
-        private const val SECTION = "section"
+        internal const val SECTION = "section"
         private const val MAIN_FRAGMENT_TAG = "main_f"
-
-        fun newInstance(navigationSection: NavigationSection) =
-                MainFragment().apply {
-                    arguments = Bundle().apply {
-                        putParcelable(SECTION, navigationSection)
-                    }
-                }
     }
 
     protected var section: NavigationSection? = null
