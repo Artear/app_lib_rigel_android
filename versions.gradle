@@ -29,8 +29,8 @@ buildscript {
 
         // ------------- Test ---------------
         junitVersion = '4.12'
-        testRunnerVersion = '1.1.1'
-        espressoCoreVersion = '3.1.1'
+        testRunnerVersion = '1.2.0'
+        espressoCoreVersion = '3.2.0'
 
 
         // ----------- Framework ------------
