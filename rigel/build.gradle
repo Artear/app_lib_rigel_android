@@ -120,7 +120,7 @@ dependencies {
 
     //Artear
     implementation lib.artear.uiView
-    api lib.artear.tools
+    implementation lib.artear.tools
 }
 
 dependencyUpdates.resolutionStrategy {
