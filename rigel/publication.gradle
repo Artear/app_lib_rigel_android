@@ -125,4 +125,3 @@ def printAdd(config, it) {
 def printAddExclusions(config, it) {
     println "Added exclusions for: '" + config.name + " " + it.group + ":" + it.name + ":" + it.version + "'"
 }
-

@@ -4,9 +4,9 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:$bintrayVersion"
-        classpath "com.github.dcendents:android-maven-gradle-plugin:$dcendentsVersion"
-        classpath "org.jetbrains.dokka:dokka-android-gradle-plugin:$dokkaVersion"
+        classpath lib.plugin.bintray
+        classpath lib.plugin.dcendents
+        classpath lib.plugin.dokka
     }
 }
 
@@ -51,11 +51,12 @@ static def getBranchName() {
 }
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion "28.0.3"
+    compileSdkVersion buildVersions.targetSdk
+    buildToolsVersion buildVersions.buildTools
 
     def branch = getBranchName()
     def vCode = 0 + getVersionCode(branch)
+    def vMinSdkVersion = buildVersions.minSdk
 
     libraryVariants.all { variant ->
         variant.outputs.all {
@@ -64,47 +65,69 @@ android {
     }
 
     defaultConfig {
-        minSdkVersion 17
-        targetSdkVersion 28
+        minSdkVersion vMinSdkVersion
+        targetSdkVersion buildVersions.targetSdk
         versionCode vCode
         versionName libraryVersion
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
+
+
+        debug {
+            vMinSdkVersion = buildVersions.debug.minSdk
+            vCode = 1
+            debuggable true
+            zipAlignEnabled false
+            minifyEnabled false
+        }
+
         release {
+            vMinSdkVersion = buildVersions.minSdk
+            vCode = 1 + getVersionCode(branch)
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    lintOptions {
+        abortOnError false
+    }
+
 }
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     //Test
-    testImplementation "junit:junit:$junitVersion"
-    androidTestImplementation "androidx.test:runner:$testRunnerVersion"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoCoreVersion"
+    testImplementation lib.junit.library
+    androidTestImplementation lib.androidx.testCore
+    androidTestImplementation lib.androidx.extJunit
+    androidTestImplementation lib.androidx.testRunner
+    androidTestImplementation lib.espresso.core
 
     //Kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
+    implementation lib.kotlin.standardLib
+    implementation lib.kotlin.reflect
 
-    //Support
-    implementation "com.google.android.material:material:$materialVersion"
-    implementation "androidx.appcompat:appcompat:$appCompatVersion"
+
+    //Material
+    implementation lib.material.library
+
+    //AndroidX
+    implementation lib.androidx.appcompat
 
     //Artear
-    implementation "com.artear.tools:tools:$toolsVersion"
-    implementation "com.artear.ui:view:$uiViewVersion"
-
+    implementation lib.artear.uiView
+    api lib.artear.tools
 }
 
 dependencyUpdates.resolutionStrategy {
     componentSelection { rules ->
         rules.all { ComponentSelection selection ->
-            boolean rejected = ['alpha', 'beta', 'rc', 'cr', 'm', 'preview', 'b', 'ea'].any { qualifier ->
+            boolean rejected = ['alpha', 'beta', 'rc', 'cr',
+                                'm', 'preview', 'b', 'ea'].any { qualifier ->
                 selection.candidate.version ==~ /(?i).*[.-]${qualifier}[.\d-+]*/
             }
             if (rejected) {
@@ -113,7 +136,6 @@ dependencyUpdates.resolutionStrategy {
         }
     }
 }
-
 
 group = publishedGroupId
 version = libraryVersion
