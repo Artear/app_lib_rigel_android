@@ -1,11 +1,7 @@
-# Java Gradle CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-java/ for more details
-#
 defaults: &defaults
   working_directory: ~/code
   docker:
-    - image: circleci/android:api-28-alpha
+    - image: circleci/android:api-28
   environment:
     JVM_OPTS: -Xmx4g
 
@@ -44,7 +40,7 @@ jobs:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "rigel/build.gradle" }}
       - run:
           name: Build
-          command: ./gradlew assemble
+          command: ./gradlew assembleRelease
       - save_cache:
           paths:
             - rigel/build/outputs/aar
@@ -60,7 +56,23 @@ jobs:
           path: rigel/build/libs
           destination: libs
 
-  tests:
+  lint:
+    <<: *defaults
+    steps:
+      - restore_cache:
+          key: checkout-cache-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "rigel/build.gradle" }}
+      - run:
+          name: Run Release Lint Checker
+          command: ./gradlew lintRelease
+      - store_artifacts:
+          path: rigel/build/reports
+          destination: reports
+      - store_test_results:
+          path: rigel/build/test-results
+
+  test:
     <<: *defaults
     steps:
       - restore_cache:
@@ -69,7 +81,7 @@ jobs:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "rigel/build.gradle" }}
       - run:
           name: Run Tests
-          command: ./gradlew lint test
+          command: ./gradlew test
       - store_artifacts:
           path: rigel/build/reports
           destination: reports
@@ -128,13 +140,17 @@ workflows:
       - check_dependencies:
           requires:
             - download_dependencies
-      - tests:
+      - lint:
+          requires:
+            - download_dependencies
+      - test:
           requires:
             - download_dependencies
       - stable:
           requires:
+            - lint
             - release
-            - tests
+            - test
       - bintray:
           filters:
             branches:

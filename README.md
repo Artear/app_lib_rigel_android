@@ -13,12 +13,12 @@ via Maven:
 <dependency>
   <groupId>com.artear.rigel</groupId>
   <artifactId>rigel</artifactId>
-  <version>0.0.5</version>
+  <version>0.0.6</version>
 </dependency>
 ```
 or Gradle:
 ```groovy
-implementation 'com.artear.rigel:rigel:0.0.5'
+implementation 'com.artear.rigel:rigel:0.0.6'
 ```
 Rigel Lib requires:
 
