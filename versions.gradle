@@ -8,33 +8,32 @@ buildVersions.targetSdk = 28
 buildVersions.buildTools = "28.0.3"
 ext.buildVersions = buildVersions
 
-def libraryVersion = "0.0.6"
+def libraryVersion = "0.0.7"
 ext.libraryVersion = libraryVersion
 
 def libVersions = [
-        kotlinVersion   : '1.3.50',
-        android         : [
+        kotlinVersion  : '1.3.50',
+        android        : [
                 gradleBuildToolsVersion: "3.5.0"
         ],
-        artear          : [
+        artear         : [
                 uiViewVersion: "0.2.4",
                 toolsVersion : "0.0.19"
         ],
-        espresso        : [
+        espresso       : [
                 coreVersion: "3.2.0"
         ],
-        junitVersion    : "4.12",
-        mockitoVersion  : "3.0.0",
-        powermockVersion: "2.0.2",
-        materialVersion : "1.0.0",
-        androidx        : [
+        junitVersion   : "4.12",
+        mockitoVersion : "3.0.0",
+        materialVersion: "1.0.0",
+        androidx       : [
                 appcompatVersion : "1.1.0",
                 testRunnerVersion: "1.2.0",
                 testCoreVersion  : "1.2.0",
                 extJunitVersion  : "1.1.1"
         ],
-        timberVersion   : "4.7.1",
-        plugin          : [
+        timberVersion  : "4.7.1",
+        plugin         : [
                 depCheckerVersion: "0.21.0",
                 bintrayVersion   : "1.8.4",
                 dokkaVersion     : "0.9.18",
@@ -45,47 +44,40 @@ def libVersions = [
 ext.libVersions = libVersions
 
 def lib = [
-        kotlin   : [
+        kotlin  : [
                 plugin     : "org.jetbrains.kotlin:kotlin-gradle-plugin:${libVersions.kotlinVersion}",
                 standardLib: "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${libVersions.kotlinVersion}",
                 reflect    : "org.jetbrains.kotlin:kotlin-reflect:${libVersions.kotlinVersion}"
         ],
-        android  : [
+        android : [
                 toolsBuildGradle: "com.android.tools.build:gradle:${libVersions.android.gradleBuildToolsVersion}"
         ],
-        artear   : [
+        artear  : [
                 uiView: "com.artear.ui:view:${libVersions.artear.uiViewVersion}",
                 tools : "com.artear.tools:tools:${libVersions.artear.toolsVersion}"
         ],
-        espresso : [
+        espresso: [
                 core: "androidx.test.espresso:espresso-core:${libVersions.espresso.coreVersion}"
         ],
-        junit    : [
+        junit   : [
                 library: "junit:junit:${libVersions.junitVersion}"
         ],
-        mockito  : [
+        mockito : [
                 library: "org.mockito:mockito-core:${libVersions.mockitoVersion}"
         ],
-        powermock: [
-                core     : "org.powermock:powermock-core:${libVersions.powermockVersion}",
-                junit    : "org.powermock:powermock-module-junit4:${libVersions.powermockVersion}",
-                junitRule: "org.powermock:powermock-module-junit4-rule:${libVersions.powermockVersion}",
-                mockito2 : "org.powermock:powermock-api-mockito2:${libVersions.powermockVersion}",
-                easyMock : "org.powermock:powermock-api-easymock:${libVersions.powermockVersion}"
-        ],
-        material : [
+        material: [
                 library: "com.google.android.material:material:${libVersions.materialVersion}"
         ],
-        androidx : [
+        androidx: [
                 appcompat : "androidx.appcompat:appcompat:${libVersions.androidx.appcompatVersion}",
                 testRunner: "androidx.test:runner:${libVersions.androidx.testRunnerVersion}",
                 testCore  : "androidx.test:core:${libVersions.androidx.testCoreVersion}",
                 extJunit  : "androidx.test.ext:junit:${libVersions.androidx.extJunitVersion}"
         ],
-        timber   : [
+        timber  : [
                 library: "com.jakewharton.timber:timber:${libVersions.timberVersion}"
         ],
-        plugin   : [
+        plugin  : [
                 bintray       : "com.jfrog.bintray.gradle:gradle-bintray-plugin:${libVersions.plugin.bintrayVersion}",
                 dcendents     : "com.github.dcendents:android-maven-gradle-plugin:${libVersions.plugin.dcendentsVersion}",
                 dokka         : "org.jetbrains.dokka:dokka-android-gradle-plugin:${libVersions.plugin.dokkaVersion}",
