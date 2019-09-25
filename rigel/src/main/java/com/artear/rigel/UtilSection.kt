@@ -15,7 +15,9 @@
  */
 package com.artear.rigel
 
-
-fun getUniqueId(section: NavigationSection, id: String): String {
-    return "${section.titleSection.first()}_${section.position}_$id"
+/**
+ * First fragment to attach. Position 0.
+ */
+fun getBaseId(section: NavigationSection): String {
+    return "${section.titleSection.toLowerCase()}_f_0"
 }

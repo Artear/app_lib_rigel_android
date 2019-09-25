@@ -21,7 +21,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.artear.rigel.extensions.getChildActiveFragment
-import com.artear.rigel.extensions.getIdWithChildFragmentCount
 import com.artear.rigel.extensions.ifNull
 import com.artear.ui.extensions.showToast
 
@@ -30,7 +29,7 @@ open class MainFragment : Fragment() {
 
     companion object {
         internal const val SECTION = "section"
-        private const val MAIN_FRAGMENT_TAG = "main_f"
+        const val MAIN_FRAGMENT_TAG = "main_f_%s"
     }
 
     protected var section: NavigationSection? = null
@@ -58,7 +57,7 @@ open class MainFragment : Fragment() {
 
         section?.let {
 
-            val tag = getIdWithChildFragmentCount(MAIN_FRAGMENT_TAG)
+            val tag = getBaseId(it)
             var fragment: Fragment?
 
             savedInstanceState?.let {

@@ -65,7 +65,7 @@ android {
     }
 
     defaultConfig {
-        minSdkVersion vMinSdkVersion
+        minSdkVersion buildVersions.minSdk
         targetSdkVersion buildVersions.targetSdk
         versionCode vCode
         versionName libraryVersion
@@ -102,15 +102,12 @@ dependencies {
 
     //Test
     testImplementation lib.junit.library
-    androidTestImplementation lib.androidx.testCore
-    androidTestImplementation lib.androidx.extJunit
     androidTestImplementation lib.androidx.testRunner
     androidTestImplementation lib.espresso.core
 
     //Kotlin
     implementation lib.kotlin.standardLib
     implementation lib.kotlin.reflect
-
 
     //Material
     implementation lib.material.library
@@ -119,8 +116,8 @@ dependencies {
     implementation lib.androidx.appcompat
 
     //Artear
-    implementation lib.artear.uiView
     implementation lib.artear.tools
+    implementation lib.artear.uiView
 }
 
 dependencyUpdates.resolutionStrategy {

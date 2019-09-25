@@ -21,7 +21,7 @@ android {
 
     defaultConfig {
         applicationId "com.artear.rigelexample"
-        minSdkVersion vMinSdkVersion
+        minSdkVersion buildVersions.minSdk
         targetSdkVersion buildVersions.targetSdk
         versionCode vCode
         versionName libraryVersion
