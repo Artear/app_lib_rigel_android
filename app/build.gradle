@@ -12,16 +12,16 @@ static def getBranchName() {
 }
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion "28.0.3"
+    compileSdkVersion buildVersions.targetSdk
+    buildToolsVersion buildVersions.buildTools
 
     def branch = getBranchName()
     def vCode = 0 + getVersionCode(branch)
 
     defaultConfig {
         applicationId "com.artear.rigelexample"
-        minSdkVersion 17
-        targetSdkVersion 28
+        minSdkVersion buildVersions.minSdk
+        targetSdkVersion buildVersions.targetSdk
         versionCode vCode
         versionName libraryVersion
 
@@ -40,17 +40,17 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     //Test
-    testImplementation "junit:junit:$junitVersion"
-    androidTestImplementation "androidx.test:runner:$testRunnerVersion"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoCoreVersion"
+    testImplementation lib.junit.library
+    androidTestImplementation lib.androidx.testRunner
+    androidTestImplementation lib.espresso.core
 
     //Kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
-    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
+    implementation lib.kotlin.standardLib
+    implementation lib.kotlin.reflect
 
     //AndroidX
-    implementation "androidx.appcompat:appcompat:$appCompatVersion"
+    implementation lib.androidx.appcompat
 
     //Artear
-    implementation "com.artear.ui:view:$uiViewVersion"
+    implementation lib.artear.uiView
 }
