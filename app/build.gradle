@@ -17,6 +17,7 @@ android {
 
     def branch = getBranchName()
     def vCode = 0 + getVersionCode(branch)
+    def vMinSdkVersion = buildVersions.minSdk
 
     defaultConfig {
         applicationId "com.artear.rigelexample"
@@ -28,7 +29,18 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+
+        debug {
+            vMinSdkVersion = buildVersions.debug.minSdk
+            vCode = 1
+            debuggable true
+            zipAlignEnabled false
+            minifyEnabled false
+        }
+
         release {
+            vMinSdkVersion = buildVersions.minSdk
+            vCode = 1 + getVersionCode(branch)
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }

@@ -15,7 +15,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-android-extensions'
     id 'kotlin-kapt'
-    id 'com.github.ben-manes.versions' version '0.21.0'
+    id 'com.github.ben-manes.versions' version '0.22.0'
 }
 
 ext {
@@ -56,6 +56,7 @@ android {
 
     def branch = getBranchName()
     def vCode = 0 + getVersionCode(branch)
+    def vMinSdkVersion = buildVersions.minSdk
 
     libraryVariants.all { variant ->
         variant.outputs.all {
@@ -68,17 +69,34 @@ android {
         targetSdkVersion buildVersions.targetSdk
         versionCode vCode
         versionName libraryVersion
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
+
+
+        debug {
+            vMinSdkVersion = buildVersions.debug.minSdk
+            vCode = 1
+            debuggable true
+            zipAlignEnabled false
+            minifyEnabled false
+        }
+
         release {
+            vMinSdkVersion = buildVersions.minSdk
+            vCode = 1 + getVersionCode(branch)
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    lintOptions {
+        abortOnError false
+    }
+
 }
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -91,8 +109,10 @@ dependencies {
     implementation lib.kotlin.standardLib
     implementation lib.kotlin.reflect
 
-    //AndroidX
+    //Material
     implementation lib.material.library
+
+    //AndroidX
     implementation lib.androidx.appcompat
 
     //Artear
@@ -103,7 +123,8 @@ dependencies {
 dependencyUpdates.resolutionStrategy {
     componentSelection { rules ->
         rules.all { ComponentSelection selection ->
-            boolean rejected = ['alpha', 'beta', 'rc', 'cr', 'm', 'preview', 'b', 'ea'].any { qualifier ->
+            boolean rejected = ['alpha', 'beta', 'rc', 'cr',
+                                'm', 'preview', 'b', 'ea'].any { qualifier ->
                 selection.candidate.version ==~ /(?i).*[.-]${qualifier}[.\d-+]*/
             }
             if (rejected) {
@@ -112,7 +133,6 @@ dependencyUpdates.resolutionStrategy {
         }
     }
 }
-
 
 group = publishedGroupId
 version = libraryVersion
