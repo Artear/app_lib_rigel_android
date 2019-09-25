@@ -5,7 +5,6 @@ import android.os.Parcel
 import android.os.Parcelable
 import androidx.fragment.app.Fragment
 import com.artear.rigel.NavigationSection
-import com.artear.rigel.getUniqueId
 import com.artear.rigelexample.ExampleFragment.Companion.ENDPOINT
 import com.artear.rigelexample.ExampleFragment.Companion.POSITION
 import com.artear.ui.base.ArtearFragment.Companion.FRAGMENT_ID
@@ -33,7 +32,7 @@ enum class ExampleSection(override val titleSection: String,
                 putInt(POSITION, this@ExampleSection.ordinal)
                 putString(ENDPOINT, this@ExampleSection.endpoint)
                 putString(FRAGMENT_TITLE, this@ExampleSection.titleSection)
-                putString(FRAGMENT_ID, getUniqueId(this@ExampleSection, fragmentId))
+                putString(FRAGMENT_ID, fragmentId)
             }
         }
     }

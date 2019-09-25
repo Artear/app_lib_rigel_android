@@ -22,6 +22,7 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.Fragment
+import com.artear.rigel.MainFragment.Companion.MAIN_FRAGMENT_TAG
 import com.artear.rigel.MainFragment.Companion.SECTION
 import com.artear.ui.base.ArtearActionBarProperties
 import com.artear.ui.base.ArtearFragment
@@ -43,7 +44,6 @@ abstract class NavigationActivity : AppCompatActivity(), ArtearActionBarOwner,
     private var menu: Menu? = null
 
     companion object {
-        const val FRAGMENT_TAG = "fragment %s"
         const val NAVIGATION_H_STACK = "navigation_h_stack"
     }
 
@@ -69,7 +69,7 @@ abstract class NavigationActivity : AppCompatActivity(), ArtearActionBarOwner,
         if (navigationHorizontalStack.isEmpty()) {
             bottomNavigationView.selectedItemId = navigationProvider.mainMenu
         } else {
-            getFragmentByPosition(navigationHorizontalStack.peek())?.let {
+            getMainFragmentByPosition(navigationHorizontalStack.peek())?.let {
                 updateActionBarFromFragment(it)
             }
         }
@@ -110,7 +110,7 @@ abstract class NavigationActivity : AppCompatActivity(), ArtearActionBarOwner,
     private val mOnNavigationItemReselectedListener =
             BottomNavigationView.OnNavigationItemReselectedListener {
                 if (!navigationHorizontalStack.empty()) {
-                    val currentFragment = getFragmentByPosition(navigationHorizontalStack.peek())
+                    val currentFragment = getMainFragmentByPosition(navigationHorizontalStack.peek())
                     currentFragment?.onReselected()
                     //mainAppBarLayout.setExpanded(true)
                 }
@@ -133,7 +133,7 @@ abstract class NavigationActivity : AppCompatActivity(), ArtearActionBarOwner,
     @Synchronized
     override fun updateActionBar(actionBarProperties: ArtearActionBarProperties, idFragment: String,
                                  updateFragment: Boolean) {
-        getFragmentByPosition(navigationHorizontalStack.peek())?.let {
+        getMainFragmentByPosition(navigationHorizontalStack.peek())?.let {
             val artearFragment = it.childFragmentManager.fragments.last() as ActionBarFragment
             if (idFragment == artearFragment.id) {
                 //mainAppBarLayout.setExpanded(true)
@@ -167,7 +167,7 @@ abstract class NavigationActivity : AppCompatActivity(), ArtearActionBarOwner,
 
     protected fun findFragment(idFragment: String): ArtearFragment? {
         navigationHorizontalStack.forEach { horizontal ->
-            getFragmentByPosition(horizontal)?.run {
+            getMainFragmentByPosition(horizontal)?.run {
                 return childFragmentManager.fragments.find { child ->
                     child is ArtearFragment && idFragment == child.id
                 } as ArtearFragment
@@ -193,7 +193,7 @@ abstract class NavigationActivity : AppCompatActivity(), ArtearActionBarOwner,
         navigationHorizontalStack.push(position)
 
         val transaction = supportFragmentManager.beginTransaction()
-        var fragment = getFragmentByPosition(position)
+        var fragment = getMainFragmentByPosition(position)
         if (fragment != null) {
             if (fragment.isAdded) updateActionBarFromFragment(fragment)
             transaction.show(fragment)
@@ -204,7 +204,7 @@ abstract class NavigationActivity : AppCompatActivity(), ArtearActionBarOwner,
                 }
             }
             transaction.add(R.id.main_fragment_container, fragment,
-                    String.format(FRAGMENT_TAG, position))
+                    String.format(MAIN_FRAGMENT_TAG, position))
         }
         supportFragmentManager.fragments.forEach {
             if (it != fragment && !it.isHidden) {
@@ -221,7 +221,7 @@ abstract class NavigationActivity : AppCompatActivity(), ArtearActionBarOwner,
 
         if (!navigationHorizontalStack.empty()) {
 
-            val fragment = getFragmentByPosition(navigationHorizontalStack.peek())
+            val fragment = getMainFragmentByPosition(navigationHorizontalStack.peek())
             fragment?.let {
                 //Check vertical navigation
                 if (it.childFragmentManager.backStackEntryCount > 1) {
@@ -242,8 +242,8 @@ abstract class NavigationActivity : AppCompatActivity(), ArtearActionBarOwner,
 
     }
 
-    private fun getFragmentByPosition(position: Int): MainFragment? {
-        val fragmentTag = String.format(FRAGMENT_TAG, position)
+    private fun getMainFragmentByPosition(position: Int): MainFragment? {
+        val fragmentTag = String.format(MAIN_FRAGMENT_TAG, position)
         return supportFragmentManager.findFragmentByTag(fragmentTag) as? MainFragment
     }
 
@@ -282,7 +282,7 @@ abstract class NavigationActivity : AppCompatActivity(), ArtearActionBarOwner,
     }
 
     private fun actionClicked(actionId: Int) {
-        getFragmentByPosition(navigationHorizontalStack.peek())?.actionClicked(actionId)
+        getMainFragmentByPosition(navigationHorizontalStack.peek())?.actionClicked(actionId)
     }
 
     private fun buttonsLayout(): LinearLayout {
