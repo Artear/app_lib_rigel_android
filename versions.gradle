@@ -8,7 +8,7 @@ buildVersions.targetSdk = 28
 buildVersions.buildTools = "28.0.3"
 ext.buildVersions = buildVersions
 
-def libraryVersion = "0.0.5"
+def libraryVersion = "0.0.6"
 ext.libraryVersion = libraryVersion
 
 def libVersions = [
