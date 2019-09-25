@@ -8,8 +8,7 @@ buildVersions.targetSdk = 28
 buildVersions.buildTools = "28.0.3"
 ext.buildVersions = buildVersions
 
-def libraryVersion = "0.0.7"
-ext.libraryVersion = libraryVersion
+ext.libraryVersion = "0.0.7"
 
 def libVersions = [
         kotlinVersion  : '1.3.50',
