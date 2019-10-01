@@ -4,7 +4,7 @@ apply plugin: 'org.jetbrains.dokka-android'
 
 dokka {
     outputFormat = 'html'
-    outputDirectory = "$buildDir/javadoc"
+    outputDirectory = "../docs"
 }
 
 if (project.hasProperty("kotlin")) { //Kotlin libraries
