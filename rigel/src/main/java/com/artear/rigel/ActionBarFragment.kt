@@ -20,7 +20,9 @@ import com.artear.ui.base.ArtearActionBarProperties
 import com.artear.ui.base.ArtearFragment
 import com.artear.ui.interfaces.ArtearActionBarOwner
 
-
+/**
+ * This action bar is an example
+ */
 open class ActionBarFragment : ArtearFragment() {
 
     companion object {

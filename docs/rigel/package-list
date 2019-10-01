@@ -1,0 +1,6 @@
+$dokka.format:html
+$dokka.linkExtension:html
+$dokka.location:com.artear.rigel.extensions$getChildActiveFragment(androidx.fragment.app.Fragment)com.artear.rigel.extensions/androidx.fragment.app.-fragment/get-child-active-fragment.html
+$dokka.location:com.artear.rigel.extensions$getIdWithChildFragmentCount(androidx.fragment.app.Fragment, kotlin.String)com.artear.rigel.extensions/androidx.fragment.app.-fragment/get-id-with-child-fragment-count.html
+com.artear.rigel
+com.artear.rigel.extensions

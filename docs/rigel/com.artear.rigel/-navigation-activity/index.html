@@ -1,0 +1,131 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>NavigationActivity - rigel</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">rigel</a>&nbsp;/&nbsp;<a href="../index.html">com.artear.rigel</a>&nbsp;/&nbsp;<a href="./index.html">NavigationActivity</a><br/>
+<br/>
+<h1>NavigationActivity</h1>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">NavigationActivity</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">AppCompatActivity</span><span class="symbol">, </span><span class="identifier">ArtearActionBarOwner</span><span class="symbol">, </span><span class="identifier">OnActionImageClickListener</span></code>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">NavigationActivity</span><span class="symbol">(</span><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="navigation-provider.html">navigationProvider</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">navigationProvider</span><span class="symbol">: </span><a href="../-navigation-provider/index.html"><span class="identifier">NavigationProvider</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="find-fragment.html">findFragment</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">findFragment</span><span class="symbol">(</span><span class="identifier" id="com.artear.rigel.NavigationActivity$findFragment(kotlin.String)/idFragment">idFragment</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">ArtearFragment</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="get-main-fragment-class.html">getMainFragmentClass</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getMainFragmentClass</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="keyword">out</span>&nbsp;<a href="../-main-fragment/index.html"><span class="identifier">MainFragment</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="on-back-pressed.html">onBackPressed</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">onBackPressed</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="on-bottom-navigation-view-created.html">onBottomNavigationViewCreated</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">onBottomNavigationViewCreated</span><span class="symbol">(</span><span class="identifier" id="com.artear.rigel.NavigationActivity$onBottomNavigationViewCreated(com.google.android.material.bottomnavigation.BottomNavigationView)/bottomNavigationView">bottomNavigationView</span><span class="symbol">:</span>&nbsp;<span class="identifier">BottomNavigationView</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="on-click-action-image.html">onClickActionImage</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">onClickActionImage</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>When user click action image in action bar</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="on-create.html">onCreate</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">onCreate</span><span class="symbol">(</span><span class="identifier" id="com.artear.rigel.NavigationActivity$onCreate(android.os.Bundle)/savedInstanceState">savedInstanceState</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Bundle.html"><span class="identifier">Bundle</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="on-restore-instance-state.html">onRestoreInstanceState</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">onRestoreInstanceState</span><span class="symbol">(</span><span class="identifier" id="com.artear.rigel.NavigationActivity$onRestoreInstanceState(android.os.Bundle)/savedInstanceState">savedInstanceState</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Bundle.html"><span class="identifier">Bundle</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="on-save-instance-state.html">onSaveInstanceState</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">onSaveInstanceState</span><span class="symbol">(</span><span class="identifier" id="com.artear.rigel.NavigationActivity$onSaveInstanceState(android.os.Bundle)/outState">outState</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Bundle.html"><span class="identifier">Bundle</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="update-action-bar.html">updateActionBar</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">updateActionBar</span><span class="symbol">(</span><span class="identifier" id="com.artear.rigel.NavigationActivity$updateActionBar(com.artear.ui.base.ArtearActionBarProperties, kotlin.String, kotlin.Boolean)/actionBarProperties">actionBarProperties</span><span class="symbol">:</span>&nbsp;<span class="identifier">ArtearActionBarProperties</span><span class="symbol">, </span><span class="identifier" id="com.artear.rigel.NavigationActivity$updateActionBar(com.artear.ui.base.ArtearActionBarProperties, kotlin.String, kotlin.Boolean)/idFragment">idFragment</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.artear.rigel.NavigationActivity$updateActionBar(com.artear.ui.base.ArtearActionBarProperties, kotlin.String, kotlin.Boolean)/updateFragment">updateFragment</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Companion Object Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-n-a-v-i-g-a-t-i-o-n_-h_-s-t-a-c-k.html">NAVIGATION_H_STACK</a></p>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">NAVIGATION_H_STACK</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Extension Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../../com.artear.rigel.extensions/if-null.html">ifNull</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <a href="../../com.artear.rigel.extensions/if-null.html#T"><span class="identifier">T</span></a><span class="symbol">.</span><span class="identifier">ifNull</span><span class="symbol">(</span><span class="identifier" id="com.artear.rigel.extensions$ifNull(com.artear.rigel.extensions.ifNull.T, kotlin.Function0((com.artear.rigel.extensions.ifNull.T)))/block">block</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="../../com.artear.rigel.extensions/if-null.html#T"><span class="identifier">T</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../com.artear.rigel.extensions/if-null.html#T"><span class="identifier">T</span></a><span class="symbol">?</span></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
