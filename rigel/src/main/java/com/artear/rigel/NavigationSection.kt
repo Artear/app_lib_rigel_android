@@ -35,7 +35,13 @@ interface NavigationSection : Parcelable {
 
     val idMenu: Int
 
+    /**
+     * The menu position in the same order
+     */
     val position: Int
 
+    /**
+     * The fragment to manage this section
+     */
     fun fragment(fragmentId: String): Fragment
 }

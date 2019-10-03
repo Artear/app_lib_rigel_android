@@ -104,9 +104,15 @@ abstract class NavigationActivity : AppCompatActivity(), ArtearActionBarOwner,
         bottomNavigationView.setOnNavigationItemReselectedListener(mOnNavigationItemReselectedListener)
     }
 
+    /**
+     * Needs override for inflate your custom menu.
+     */
     open fun onBottomNavigationViewCreated(bottomNavigationView: BottomNavigationView) {
     }
 
+    /**
+     * Override this if you need your own base fragment. Must be extend [MainFragment]
+     */
     open fun getMainFragmentClass(): KClass<out MainFragment> {
         return MainFragment::class
     }
@@ -269,6 +275,9 @@ abstract class NavigationActivity : AppCompatActivity(), ArtearActionBarOwner,
 
     }
 
+    /**
+     * @return The [MainFragment] in horizontal stack for that position
+     */
     private fun getMainFragmentByPosition(position: Int): MainFragment? {
         val fragmentTag = String.format(MAIN_FRAGMENT_TAG, position)
         return supportFragmentManager.findFragmentByTag(fragmentTag) as? MainFragment

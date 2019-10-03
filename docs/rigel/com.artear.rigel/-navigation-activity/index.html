@@ -19,7 +19,8 @@ each section. On the other hand for inflate your menu sections must implement
 <a href="on-bottom-navigation-view-created.html">onBottomNavigationViewCreated</a>.</p>
 <p>If you need your own <a href="../-main-fragment/index.html">MainFragment</a> you also can extend them and override <a href="get-main-fragment-class.html">getMainFragmentClass</a>.</p>
 <p>The activity hast a navigation horizontal stack that control that flow. Make a <a href="../-main-fragment/index.html">MainFragment</a>
-for each section and is the owner of unique toolbar in the app. See: <a href="#">ArtearActionBarOwner</a></p>
+for each section and is the owner of unique toolbar in the app. See: <em>ArtearActionBarOwner</em>
+in uiview library.</p>
 <p>On back pressed first check the vertical navigation, and if the section fragment has not more
 that one the logic find the last fragment in the horizontal stack and show them.</p>
 <p>The flow is lifecycle safe and if system destroy the activity the stack will be restored too.</p>
@@ -69,7 +70,9 @@ David Tolchinsky</p>
 <p><a href="get-main-fragment-class.html">getMainFragmentClass</a></p>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getMainFragmentClass</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="keyword">out</span>&nbsp;<a href="../-main-fragment/index.html"><span class="identifier">MainFragment</span></a><span class="symbol">&gt;</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getMainFragmentClass</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="keyword">out</span>&nbsp;<a href="../-main-fragment/index.html"><span class="identifier">MainFragment</span></a><span class="symbol">&gt;</span></code>
+<p>Override this if you need your own base fragment. Must be extend <a href="../-main-fragment/index.html">MainFragment</a></p>
+</td>
 </tr>
 <tr>
 <td>
@@ -83,7 +86,9 @@ David Tolchinsky</p>
 <p><a href="on-bottom-navigation-view-created.html">onBottomNavigationViewCreated</a></p>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">onBottomNavigationViewCreated</span><span class="symbol">(</span><span class="identifier" id="com.artear.rigel.NavigationActivity$onBottomNavigationViewCreated(com.google.android.material.bottomnavigation.BottomNavigationView)/bottomNavigationView">bottomNavigationView</span><span class="symbol">:</span>&nbsp;<span class="identifier">BottomNavigationView</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">onBottomNavigationViewCreated</span><span class="symbol">(</span><span class="identifier" id="com.artear.rigel.NavigationActivity$onBottomNavigationViewCreated(com.google.android.material.bottomnavigation.BottomNavigationView)/bottomNavigationView">bottomNavigationView</span><span class="symbol">:</span>&nbsp;<span class="identifier">BottomNavigationView</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Needs override for inflate your custom menu.</p>
+</td>
 </tr>
 <tr>
 <td>

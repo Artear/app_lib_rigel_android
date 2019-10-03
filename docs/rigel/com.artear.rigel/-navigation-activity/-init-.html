@@ -20,7 +20,8 @@ each section. On the other hand for inflate your menu sections must implement
 <a href="on-bottom-navigation-view-created.html">onBottomNavigationViewCreated</a>.</p>
 <p>If you need your own <a href="../-main-fragment/index.html">MainFragment</a> you also can extend them and override <a href="get-main-fragment-class.html">getMainFragmentClass</a>.</p>
 <p>The activity hast a navigation horizontal stack that control that flow. Make a <a href="../-main-fragment/index.html">MainFragment</a>
-for each section and is the owner of unique toolbar in the app. See: <a href="#">ArtearActionBarOwner</a></p>
+for each section and is the owner of unique toolbar in the app. See: <em>ArtearActionBarOwner</em>
+in uiview library.</p>
 <p>On back pressed first check the vertical navigation, and if the section fragment has not more
 that one the logic find the last fragment in the horizontal stack and show them.</p>
 <p>The flow is lifecycle safe and if system destroy the activity the stack will be restored too.</p>
