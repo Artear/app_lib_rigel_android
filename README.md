@@ -4,6 +4,26 @@
  and manipulation of back stack. 
  
  *Rigel is one of the main stars for sky navigation.*
+ 
+Documentation
+--------
+
+This library provide a [NavigationActivity](https://github.com/Artear/app_lib_rigel_android/blob/master/rigel/src/main/java/com/artear/rigel/NavigationActivity.kt).
+ There is a simple AppCompatActivity that have a bottom navigation. 
+ It works with a [NavigationProvider](https://github.com/Artear/app_lib_rigel_android/blob/master/rigel/src/main/java/com/artear/rigel/NavigationProvider.kt) 
+ and [NavigationSection](https://github.com/Artear/app_lib_rigel_android/blob/master/rigel/src/main/java/com/artear/rigel/NavigationSection.kt) interface. 
+
+The bottom navigation swap between [MainFragment](https://github.com/Artear/app_lib_rigel_android/blob/master/rigel/src/main/java/com/artear/rigel/MainFragment.kt) 
+witch act like a base fragment and the owner of your stack fragment child. 
+
+The [NavigationSection](https://github.com/Artear/app_lib_rigel_android/blob/master/rigel/src/main/java/com/artear/rigel/NavigationSection.kt)
+provide a fragment for instantiate. The MainFragment has the responsibility of launch each child
+and [NavigationActivity](https://github.com/Artear/app_lib_rigel_android/blob/master/rigel/src/main/java/com/artear/rigel/NavigationActivity.kt) controls that back stack when user go back or switch in the bottom navigation.
+
+Note that [NavigationActivity](https://github.com/Artear/app_lib_rigel_android/blob/master/rigel/src/main/java/com/artear/rigel/NavigationActivity.kt) 
+have two navigation horizontal and vertical. 
+
+See entire library documentation [here](https://artear.github.io/app_lib_rigel_android).
 
 Download
 --------
@@ -13,12 +33,12 @@ via Maven:
 <dependency>
   <groupId>com.artear.rigel</groupId>
   <artifactId>rigel</artifactId>
-  <version>0.0.7</version>
+  <version>0.0.10</version>
 </dependency>
 ```
 or Gradle:
 ```groovy
-implementation 'com.artear.rigel:rigel:0.0.7'
+implementation 'com.artear.rigel:rigel:0.0.10'
 ```
 Rigel Lib requires:
 
