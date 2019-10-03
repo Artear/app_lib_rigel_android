@@ -24,7 +24,16 @@ import com.artear.rigel.extensions.getChildActiveFragment
 import com.artear.rigel.extensions.ifNull
 import com.artear.ui.extensions.showToast
 
-
+/**
+ * It is the base fragment for this library. Each section in [NavigationActivity] has an MainFragment
+ * witch control the update of the action bar when use a [ActionBarFragment] in the vertical navigation.
+ *
+ * This fragment is a unique instance and save the [NavigationSection] if is destroyed.
+ *
+ * Launch in your childFragmentManager each fragment. First attach the fragment provided by
+ * [NavigationSection]. And if that fragment needs launch another call to the parent
+ * and execute [launchFragment].
+ */
 open class MainFragment : Fragment() {
 
     companion object {
@@ -32,6 +41,9 @@ open class MainFragment : Fragment() {
         const val MAIN_FRAGMENT_TAG = "main_f_%s"
     }
 
+    /**
+     * The [NavigationSection] of this fragment. It is safe and will saved if the fragment is destroyed.
+     */
     protected var section: NavigationSection? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +51,9 @@ open class MainFragment : Fragment() {
         return inflater.inflate(R.layout.main_fragment, container, false)
     }
 
+    /**
+     * This listener controls the vertical navigation updates of an [ActionBarFragment]
+     */
     private val onBackStackListener = {
         if (childFragmentManager.backStackEntryCount > 0) {
             val artearFragment = childFragmentManager.fragments.last() as? ActionBarFragment
@@ -46,6 +61,9 @@ open class MainFragment : Fragment() {
         }
     }
 
+    /**
+     * Get the [NavigationSection] and attach the first fragment in the back stack.
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -104,6 +122,11 @@ open class MainFragment : Fragment() {
         childFragmentManager.removeOnBackStackChangedListener(onBackStackListener)
     }
 
+    /**
+     * This method must be used each time that you need to launch a new fragment.
+     * That means that hide the previous and add this. It is necessary for logic navigation works.
+     *
+     */
     fun launchFragment(fragment: Fragment) {
         childFragmentManager.beginTransaction().apply {
             addToBackStack(null)
@@ -113,11 +136,18 @@ open class MainFragment : Fragment() {
         }
     }
 
+    /**
+     * Called when bottom navigation button is clicked and the section is on focus.
+     * If the active fragment is a [ScrollableToTopContent] scroll up to start.
+     */
     fun onReselected() {
         val active = getChildActiveFragment() as? ScrollableToTopContent
         active?.goToUp()
     }
 
+    /**
+     * Called when toolbar button is clicked and delegate the action to active fragment.
+     */
     fun actionClicked(actionId: Int) {
         val active = getChildActiveFragment() as? ActionsTopMenuListener
         active?.onActionClicked(actionId)

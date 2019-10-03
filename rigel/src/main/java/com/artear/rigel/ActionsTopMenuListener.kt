@@ -15,7 +15,13 @@
  */
 package com.artear.rigel
 
-
+/**
+ * Simple interface to catch the menu action buttons listener on toolbar
+ */
 interface ActionsTopMenuListener {
+
+    /**
+     * Execute when a toolbar button will clicked. e.g: share action.
+     */
     fun onActionClicked(actionId: Int)
 }

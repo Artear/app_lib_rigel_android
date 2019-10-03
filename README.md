@@ -8,22 +8,26 @@
 Documentation
 --------
 
-This library provide a [NavigationActivity](https://github.com/Artear/app_lib_rigel_android/blob/master/rigel/src/main/java/com/artear/rigel/NavigationActivity.kt).
+This library provide a [NavigationActivity](./rigel/src/main/java/com/artear/rigel/NavigationActivity.kt).
  There is a simple AppCompatActivity that have a bottom navigation. 
- It works with a [NavigationProvider](https://github.com/Artear/app_lib_rigel_android/blob/master/rigel/src/main/java/com/artear/rigel/NavigationProvider.kt) 
- and [NavigationSection](https://github.com/Artear/app_lib_rigel_android/blob/master/rigel/src/main/java/com/artear/rigel/NavigationSection.kt) interface. 
+ It works with a [NavigationProvider](./rigel/src/main/java/com/artear/rigel/NavigationProvider.kt) 
+ and [NavigationSection](./rigel/src/main/java/com/artear/rigel/NavigationSection.kt) interface. 
 
-The bottom navigation swap between [MainFragment](https://github.com/Artear/app_lib_rigel_android/blob/master/rigel/src/main/java/com/artear/rigel/MainFragment.kt) 
+The bottom navigation swap between [MainFragment](./rigel/src/main/java/com/artear/rigel/MainFragment.kt) 
 witch act like a base fragment and the owner of your stack fragment child. 
 
-The [NavigationSection](https://github.com/Artear/app_lib_rigel_android/blob/master/rigel/src/main/java/com/artear/rigel/NavigationSection.kt)
+The [NavigationSection](./rigel/src/main/java/com/artear/rigel/NavigationSection.kt)
 provide a fragment for instantiate. The MainFragment has the responsibility of launch each child
-and [NavigationActivity](https://github.com/Artear/app_lib_rigel_android/blob/master/rigel/src/main/java/com/artear/rigel/NavigationActivity.kt) controls that back stack when user go back or switch in the bottom navigation.
+and [NavigationActivity](./rigel/src/main/java/com/artear/rigel/NavigationActivity.kt) controls that back stack when user go back or switch in the bottom navigation.
 
-Note that [NavigationActivity](https://github.com/Artear/app_lib_rigel_android/blob/master/rigel/src/main/java/com/artear/rigel/NavigationActivity.kt) 
-have two navigation horizontal and vertical. 
+Note that [NavigationActivity](./rigel/src/main/java/com/artear/rigel/NavigationActivity.kt) 
+have two navigation horizontal and vertical.
 
-See entire library documentation [here](https://artear.github.io/app_lib_rigel_android).
+The library also have [ActionBarFragment](./rigel/src/main/java/com/artear/rigel/ActionBarFragment.kt) witch extends from 
+ArtearFragment (See [uiview](https://github.com/Artear/app_lib_ui_view_android) library) 
+and if you extends of it you can manage title and icon toolbar.
+
+*See entire documentation library [here](https://artear.github.io/app_lib_rigel_android).*
 
 Download
 --------

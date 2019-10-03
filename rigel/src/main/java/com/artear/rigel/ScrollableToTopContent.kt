@@ -15,8 +15,13 @@
  */
 package com.artear.rigel
 
-
+/**
+ * For see the first content in a list.
+ */
 interface ScrollableToTopContent {
 
+    /**
+     * Use to scroll to top in a content, typically recycler view, for a better user experience.
+     */
     fun goToUp()
 }

@@ -18,6 +18,15 @@ package com.artear.rigel
 import android.os.Parcelable
 import androidx.fragment.app.Fragment
 
+/**
+ * A section for navigation flow. Join a menu button with a section fragment. The position must be
+ * the same position on that menu.
+ *
+ * The endpoint just is used if the fragment is connected with specific and unique section api.
+ *
+ * Used in [MainFragment] to instantiate a fragment and set a title.
+ *
+ */
 interface NavigationSection : Parcelable {
 
     val titleSection: String

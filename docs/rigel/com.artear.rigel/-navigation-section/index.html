@@ -9,6 +9,10 @@
 <br/>
 <h1>NavigationSection</h1>
 <code><span class="keyword">interface </span><span class="identifier">NavigationSection</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code>
+<p>A section for navigation flow. Join a menu button with a section fragment. The position must be
+the same position on that menu.</p>
+<p>The endpoint just is used if the fragment is connected with specific and unique section api.</p>
+<p>Used in <a href="../-main-fragment/index.html">MainFragment</a> to instantiate a fragment and set a title.</p>
 <h3>Properties</h3>
 <table>
 <tbody>
@@ -62,7 +66,9 @@
 <p><a href="../../com.artear.rigel.extensions/if-null.html">ifNull</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <a href="../../com.artear.rigel.extensions/if-null.html#T"><span class="identifier">T</span></a><span class="symbol">.</span><span class="identifier">ifNull</span><span class="symbol">(</span><span class="identifier" id="com.artear.rigel.extensions$ifNull(com.artear.rigel.extensions.ifNull.T, kotlin.Function0((com.artear.rigel.extensions.ifNull.T)))/block">block</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="../../com.artear.rigel.extensions/if-null.html#T"><span class="identifier">T</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../com.artear.rigel.extensions/if-null.html#T"><span class="identifier">T</span></a><span class="symbol">?</span></code></td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <a href="../../com.artear.rigel.extensions/if-null.html#T"><span class="identifier">T</span></a><span class="symbol">.</span><span class="identifier">ifNull</span><span class="symbol">(</span><span class="identifier" id="com.artear.rigel.extensions$ifNull(com.artear.rigel.extensions.ifNull.T, kotlin.Function0((com.artear.rigel.extensions.ifNull.T)))/block">block</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="../../com.artear.rigel.extensions/if-null.html#T"><span class="identifier">T</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../com.artear.rigel.extensions/if-null.html#T"><span class="identifier">T</span></a><span class="symbol">?</span></code>
+<p>Execute the block only if null</p>
+</td>
 </tr>
 </tbody>
 </table>

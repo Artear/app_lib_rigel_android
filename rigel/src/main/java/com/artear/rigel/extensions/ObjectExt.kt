@@ -15,6 +15,9 @@
  */
 package com.artear.rigel.extensions
 
+/**
+ * Execute the block only if null
+ */
 inline fun <T> T.ifNull(block: () -> T?): T? {
     if (this == null) return block()
     return this
