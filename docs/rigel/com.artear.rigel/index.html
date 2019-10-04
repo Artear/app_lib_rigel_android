@@ -17,7 +17,8 @@
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">ActionBarFragment</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">ArtearFragment</span></code>
-<p>This action bar is an example</p>
+<p>A Fragment that save an abstraction called <em>ArtearActionBarProperties</em> of some features to
+draw in a toolbar on <a href="-navigation-activity/index.html">NavigationActivity</a>.</p>
 </td>
 </tr>
 <tr>
@@ -25,42 +26,56 @@
 <p><a href="-actions-top-menu-listener/index.html">ActionsTopMenuListener</a></p>
 </td>
 <td>
-<code><span class="keyword">interface </span><span class="identifier">ActionsTopMenuListener</span></code></td>
+<code><span class="keyword">interface </span><span class="identifier">ActionsTopMenuListener</span></code>
+<p>Simple interface to catch the menu action buttons listener on toolbar</p>
+</td>
 </tr>
 <tr>
 <td>
 <p><a href="-main-fragment/index.html">MainFragment</a></p>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">MainFragment</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Fragment</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">MainFragment</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Fragment</span></code>
+<p>It is the base fragment for this library. Each section in <a href="-navigation-activity/index.html">NavigationActivity</a> has an MainFragment
+witch control the update of the action bar when use a <a href="-action-bar-fragment/index.html">ActionBarFragment</a> in the vertical navigation.</p>
+</td>
 </tr>
 <tr>
 <td>
 <p><a href="-navigation-activity/index.html">NavigationActivity</a></p>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">NavigationActivity</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">AppCompatActivity</span><span class="symbol">, </span><span class="identifier">ArtearActionBarOwner</span><span class="symbol">, </span><span class="identifier">OnActionImageClickListener</span></code></td>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">NavigationActivity</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">AppCompatActivity</span><span class="symbol">, </span><span class="identifier">ArtearActionBarOwner</span><span class="symbol">, </span><span class="identifier">OnActionImageClickListener</span></code>
+<p>Extend this class to make your application a single activity application.</p>
+</td>
 </tr>
 <tr>
 <td>
 <p><a href="-navigation-provider/index.html">NavigationProvider</a></p>
 </td>
 <td>
-<code><span class="keyword">class </span><span class="identifier">NavigationProvider</span></code></td>
+<code><span class="keyword">class </span><span class="identifier">NavigationProvider</span></code>
+<p>Used to provide a list of <a href="-navigation-section/index.html">NavigationSection</a> and a menu to a <a href="-navigation-activity/index.html">NavigationActivity</a></p>
+</td>
 </tr>
 <tr>
 <td>
 <p><a href="-navigation-section/index.html">NavigationSection</a></p>
 </td>
 <td>
-<code><span class="keyword">interface </span><span class="identifier">NavigationSection</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+<code><span class="keyword">interface </span><span class="identifier">NavigationSection</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code>
+<p>A section for navigation flow. Join a menu button with a section fragment. The position must be
+the same position on that menu.</p>
+</td>
 </tr>
 <tr>
 <td>
 <p><a href="-scrollable-to-top-content/index.html">ScrollableToTopContent</a></p>
 </td>
 <td>
-<code><span class="keyword">interface </span><span class="identifier">ScrollableToTopContent</span></code></td>
+<code><span class="keyword">interface </span><span class="identifier">ScrollableToTopContent</span></code>
+<p>For see the first content in a list.</p>
+</td>
 </tr>
 </tbody>
 </table>

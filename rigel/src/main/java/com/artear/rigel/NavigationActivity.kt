@@ -37,7 +37,34 @@ import java.util.*
 import kotlin.reflect.KClass
 import kotlin.reflect.full.createInstance
 
-
+/**
+ * Extend this class to make your application a single activity application.
+ *
+ * The main aim of this library is make simplest the navigation. Center in one an only one activity,
+ * with many sections in a bottom navigation and control the back stack. Then you must to use a few
+ * classes to make it possible.
+ *
+ * On the one hand you must have an base activity of your project extend of this and override
+ * the [NavigationProvider]. An enum maybe can a way to do that and you must to create a fragment for
+ * each section. On the other hand for inflate your menu sections must implement
+ * [onBottomNavigationViewCreated].
+ *
+ * If you need your own [MainFragment] you also can extend them and override [getMainFragmentClass].
+ *
+ * The activity hast a navigation horizontal stack that control that flow. Make a [MainFragment]
+ * for each section and is the owner of unique toolbar in the app. See: *ArtearActionBarOwner*
+ * in uiview library.
+ *
+ * On back pressed first check the vertical navigation, and if the section fragment has not more
+ * that one the logic find the last fragment in the horizontal stack and show them.
+ *
+ * The flow is lifecycle safe and if system destroy the activity the stack will be restored too.
+ *
+ *
+ * @see MainFragment
+ * @author David Tolchinsky
+ *
+ */
 abstract class NavigationActivity : AppCompatActivity(), ArtearActionBarOwner,
         BaseActionBarView.OnActionImageClickListener {
 
@@ -77,9 +104,15 @@ abstract class NavigationActivity : AppCompatActivity(), ArtearActionBarOwner,
         bottomNavigationView.setOnNavigationItemReselectedListener(mOnNavigationItemReselectedListener)
     }
 
+    /**
+     * Needs override for inflate your custom menu.
+     */
     open fun onBottomNavigationViewCreated(bottomNavigationView: BottomNavigationView) {
     }
 
+    /**
+     * Override this if you need your own base fragment. Must be extend [MainFragment]
+     */
     open fun getMainFragmentClass(): KClass<out MainFragment> {
         return MainFragment::class
     }
@@ -242,6 +275,9 @@ abstract class NavigationActivity : AppCompatActivity(), ArtearActionBarOwner,
 
     }
 
+    /**
+     * @return The [MainFragment] in horizontal stack for that position
+     */
     private fun getMainFragmentByPosition(position: Int): MainFragment? {
         val fragmentTag = String.format(MAIN_FRAGMENT_TAG, position)
         return supportFragmentManager.findFragmentByTag(fragmentTag) as? MainFragment

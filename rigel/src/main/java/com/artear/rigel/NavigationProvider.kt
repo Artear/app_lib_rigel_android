@@ -15,4 +15,9 @@
  */
 package com.artear.rigel
 
+/**
+ * Used to provide a list of [NavigationSection] and a menu to a [NavigationActivity]
+ *
+ * @see NavigationActivity
+ */
 class NavigationProvider(val values: Array<out NavigationSection>, val mainMenu: Int)

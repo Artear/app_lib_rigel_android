@@ -21,7 +21,11 @@ import com.artear.ui.base.ArtearFragment
 import com.artear.ui.interfaces.ArtearActionBarOwner
 
 /**
- * This action bar is an example
+ *  A Fragment that save an abstraction called *ArtearActionBarProperties* of some features to
+ *  draw in a toolbar on [NavigationActivity].
+ *
+ *  See: uiview library
+ *
  */
 open class ActionBarFragment : ArtearFragment() {
 
@@ -29,8 +33,15 @@ open class ActionBarFragment : ArtearFragment() {
         const val ACTION_BAR_PROPERTIES = "action_bar_properties"
     }
 
+    /**
+     * The abstraction to save toolbar properties of this fragment
+     */
     lateinit var actionBarProperties: ArtearActionBarProperties
 
+    /**
+     * Called when a fragment recover the focus on screen. In that way the user can see an
+     * update of toolbar.
+     */
     fun updateActionBar() {
         val owner = context as? ArtearActionBarOwner
         owner?.updateActionBar(actionBarProperties, id)

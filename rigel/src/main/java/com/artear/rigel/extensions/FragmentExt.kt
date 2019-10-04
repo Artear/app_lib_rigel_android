@@ -24,6 +24,11 @@ fun Fragment.getChildActiveFragment(): Fragment {
     return childFragmentManager.fragments.last()
 }
 
+/**
+ * Useful to get a unique id an launch a fragment vertically.
+ *
+ * @return An id with child count +1.
+ */
 fun Fragment.getIdWithChildFragmentCount(description: String): String {
     return "${description}_${childFragmentManager.backStackEntryCount + 1}"
 }

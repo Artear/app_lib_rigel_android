@@ -10,5 +10,25 @@
 <h1>&lt;init&gt;</h1>
 <a name="com.artear.rigel.NavigationActivity$&lt;init&gt;()"></a>
 <code><span class="identifier">NavigationActivity</span><span class="symbol">(</span><span class="symbol">)</span></code>
+<p>Extend this class to make your application a single activity application.</p>
+<p>The main aim of this library is make simplest the navigation. Center in one an only one activity,
+with many sections in a bottom navigation and control the back stack. Then you must to use a few
+classes to make it possible.</p>
+<p>On the one hand you must have an base activity of your project extend of this and override
+the <a href="../-navigation-provider/index.html">NavigationProvider</a>. An enum maybe can a way to do that and you must to create a fragment for
+each section. On the other hand for inflate your menu sections must implement
+<a href="on-bottom-navigation-view-created.html">onBottomNavigationViewCreated</a>.</p>
+<p>If you need your own <a href="../-main-fragment/index.html">MainFragment</a> you also can extend them and override <a href="get-main-fragment-class.html">getMainFragmentClass</a>.</p>
+<p>The activity hast a navigation horizontal stack that control that flow. Make a <a href="../-main-fragment/index.html">MainFragment</a>
+for each section and is the owner of unique toolbar in the app. See: <em>ArtearActionBarOwner</em>
+in uiview library.</p>
+<p>On back pressed first check the vertical navigation, and if the section fragment has not more
+that one the logic find the last fragment in the horizontal stack and show them.</p>
+<p>The flow is lifecycle safe and if system destroy the activity the stack will be restored too.</p>
+<p><strong>See Also</strong><br/>
+<p><a href="../-main-fragment/index.html">MainFragment</a></p>
+</p>
+<p><strong>Author</strong><br/>
+David Tolchinsky</p>
 </BODY>
 </HTML>

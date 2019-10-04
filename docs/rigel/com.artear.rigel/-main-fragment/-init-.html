@@ -10,5 +10,11 @@
 <h1>&lt;init&gt;</h1>
 <a name="com.artear.rigel.MainFragment$&lt;init&gt;()"></a>
 <code><span class="identifier">MainFragment</span><span class="symbol">(</span><span class="symbol">)</span></code>
+<p>It is the base fragment for this library. Each section in <a href="../-navigation-activity/index.html">NavigationActivity</a> has an MainFragment
+witch control the update of the action bar when use a <a href="../-action-bar-fragment/index.html">ActionBarFragment</a> in the vertical navigation.</p>
+<p>This fragment is a unique instance and save the <a href="../-navigation-section/index.html">NavigationSection</a> if is destroyed.</p>
+<p>Launch in your childFragmentManager each fragment. First attach the fragment provided by
+<a href="../-navigation-section/index.html">NavigationSection</a>. And if that fragment needs launch another call to the parent
+and execute <a href="launch-fragment.html">launchFragment</a>.</p>
 </BODY>
 </HTML>
